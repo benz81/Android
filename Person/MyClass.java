@@ -14,5 +14,26 @@ public class MyClass {
         f.print();
         f.print_subject();
 
+        Student s = new Student();
+        s.setNum(3);
+        s.setName("Paul");
+        s.setDept("Computer");
+        s.setAddress("BuCheon");
+        String[] studentClass = {"Java", "Compiler"};
+        s.setSubjects(studentClass);
+
+        s.print();
+        s.print_subject();
+
+        Staff sf = new Staff();
+        sf.setNum(4);
+        sf.setName("Harry");
+        sf.setDept("Edu");
+        sf.setAddress("KyungGi");
+        sf.setJob("Edu manager");
+
+        sf.print();
+        sf.print_job();
+
     }
 }
