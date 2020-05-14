@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -61,6 +63,67 @@ public class MyClass {
         LocalDateTime newDate = now.plusYears(1)
                 .minusMonths(2).plusDays(4).plusHours(2);
         System.out.println(newDate);
+
+        LocalDateTime startDateTime =
+                LocalDateTime.of(2021, 7, 31, 18, 0, 0);
+        System.out.println("start date " + startDateTime);
+
+        LocalDateTime endDateTime =
+                LocalDateTime.of(2024, 3, 31, 18, 0, 0);
+        System.out.println("end date " + endDateTime);
+
+        if(startDateTime.isBefore(endDateTime)){
+            System.out.println("ing...");
+        }else if(startDateTime.isEqual(endDateTime)){
+            System.out.println("same");
+        }else if(startDateTime.isAfter(endDateTime)){
+            System.out.println("end");
+        }
+
+        long remainYear =
+                startDateTime.until(endDateTime, ChronoUnit.YEARS);
+        System.out.println(remainYear);
+
+        long remainMonth =
+                startDateTime.until(endDateTime, ChronoUnit.MONTHS);
+        System.out.println(remainMonth);
+
+        long remainDay =
+                startDateTime.until(endDateTime, ChronoUnit.DAYS);
+        System.out.println(remainDay);
+
+        long remainHour =
+                startDateTime.until(endDateTime, ChronoUnit.HOURS);
+        System.out.println(remainHour);
+
+        long remainMinute =
+                startDateTime.until(endDateTime, ChronoUnit.MINUTES);
+        System.out.println(remainMinute);
+
+        long remainSecond =
+                startDateTime.until(endDateTime, ChronoUnit.SECONDS);
+        System.out.println(remainSecond);
+
+        remainYear = ChronoUnit.YEARS.between(startDateTime,endDateTime);
+
+
+        DateTimeFormatter formatter;
+        LocalDate localDate;
+
+        localDate = LocalDate.parse("2024-05-21");
+        System.out.println(localDate);
+
+        formatter = DateTimeFormatter.ISO_LOCAL_DATE;
+        localDate = LocalDate.parse("2024-05-21", formatter);
+        System.out.println(localDate);
+
+        formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        localDate = LocalDate.parse("2024/05/21", formatter);
+        System.out.println(localDate);
+
+        formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+        localDate = LocalDate.parse("2024.05.21", formatter);
+        System.out.println(localDate);
 
 
     }
