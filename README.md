@@ -21,7 +21,7 @@
 
 07. 리눅스 - https://drive.google.com/open?id=1xMooGJzt53n0KmV2l1YMvkWwb-wb19DT
 
-
+08. MariaDB 리눅스 버전별 설치 방법 - MariaDB OS 버전별 설치 방법 - https://downloads.mariadb.org/mariadb/repositories/#distro=CentOS&distro_release=centos8-amd64--centos8&mirror=23Media&version=10.4
 
 maria db 
 
