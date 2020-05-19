@@ -23,3 +23,4 @@
 
 08. MariaDB 리눅스 버전별 설치 방법 - https://downloads.mariadb.org/mariadb/repositories
 
+09. 윈도우용 MysqlWorkBench 실행위해 먼저 설치 - https://dev.mysql.com/downloads/file/?id=495322
