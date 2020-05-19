@@ -20,3 +20,13 @@
 06. 실습문제 - https://docs.google.com/presentation/d/1l0-e3htJiv9Eid9_jh31vwTjjCcmMtzo8XoIGkMTvh8/edit#slide=id.g804c60bfcc_0_12
 
 07. 리눅스 - https://drive.google.com/open?id=1xMooGJzt53n0KmV2l1YMvkWwb-wb19DT
+
+
+
+maria db 
+
+[mariadb]
+name = MariaDB
+baseurl = http://yum.mariadb.org/10.4/centos7-amd64
+gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+gpgcheck=1
