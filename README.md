@@ -28,3 +28,5 @@
 09. 윈도우용 MysqlWorkBench 실행위해 먼저 설치 - https://dev.mysql.com/downloads/file/?id=495322
 
 10. DataBase - https://drive.google.com/open?id=1sH5rvD-svb3FAMUMWWEtWWA3YE7MWv4O
+
+11. sample db - https://drive.google.com/open?id=1sw3KVYCdChLZU9Q_DQTCYp2OEkMp1q5c
