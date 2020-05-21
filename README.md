@@ -30,3 +30,5 @@
 10. DataBase - https://drive.google.com/open?id=1sH5rvD-svb3FAMUMWWEtWWA3YE7MWv4O
 
 11. sample db - https://drive.google.com/open?id=1sw3KVYCdChLZU9Q_DQTCYp2OEkMp1q5c
+
+12. sample db (join) - https://drive.google.com/open?id=1eTRPErkm1IpPwjitSFiLNihUy3JsL0Fe
