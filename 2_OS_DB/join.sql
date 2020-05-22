@@ -164,7 +164,18 @@ join dept as d
 on e.deptno = d.deptno
 where e.deptno = 10;
 
-
+-- 부서번호가 10번, 20번, 30번인 사원들의 부서번호, 부서이름,
+-- 사원이름, 월급, 급여등급을 조회하시오.
+-- 단, 부서번호가 낮은 순, 같은 부서면 월급이 높은 순으로 정렬.
+select e.deptno, d.dname, e.ename, e.sal, s.grade
+from emp as e
+join dept as d
+on e.deptno = d.deptno
+join salgrade s
+on e.sal between s.losal and s.hisal
+where d.deptno in (10, 20, 30)
+-- where d.deptno = 10 or d.deptno = 20 or d.deptno = 30
+order by d.deptno asc, e.sal desc;
 
 
 
