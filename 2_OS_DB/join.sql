@@ -156,6 +156,13 @@ where e.comm is not null;
 
 -- 부서번호가 10번인 사원들의 부서번호, 부서이름, 사원이름, 
 -- 월급, 급여등급을 출력하시오.
+select e.empno, d.dname, e.ename, e.sal, s.grade
+from emp as e
+left join salgrade s
+on e.sal between s.losal and s.hisal
+join dept as d
+on e.deptno = d.deptno
+where e.deptno = 10;
 
 
 
