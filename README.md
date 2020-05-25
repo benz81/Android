@@ -32,3 +32,5 @@
 11. sample db - https://drive.google.com/open?id=1sw3KVYCdChLZU9Q_DQTCYp2OEkMp1q5c
 
 12. sample db (join) - https://drive.google.com/open?id=1eTRPErkm1IpPwjitSFiLNihUy3JsL0Fe
+
+13. Books 테이블에 insert - https://drive.google.com/open?id=1IHGP15up9P9iliMUCLXab6f-wYpEamuG
