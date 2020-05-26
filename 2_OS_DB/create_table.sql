@@ -168,6 +168,114 @@ select * from cats4;
 insert into cats4 () values ();
 select * from cats4;
 
+-- 프라이머리 키 ( Primary Key ) - 데이터 중복없이 유니크하게 처리하자.
+create table unique_cats (
+	cat_id int NOT NULL,
+    name varchar(100),
+    age int,
+    primary key (cat_id)
+);
+desc unique_cats;
+insert into unique_cats (cat_id, name, age)
+	values (1, "Fred", 4 );
+insert into unique_cats (cat_id, name, age)
+	values (2, "Louise", 3);
+select * from unique_cats;
+-- 캣 아이디가 동일한 숫자로, 새로운 데이터를 저장하는 경우
+insert into unique_cats (cat_id, name, age)
+	values (1, "James", 5);
+insert into unique_cats (name, age)
+	values ("James", 5);
+-- Duplicate entry '1' for key 'PRIMARY'
+select * from unique_cats;
+-- 프라이머리 키 값을, 내가 눈으로 확인해서 넣지 말고,
+-- 데이터베이스가 자동으로 알아서 계산해서 넣어주는 방법.
+-- AUTO_INCREMENT (소문자도 동일)
+create table unique_cats2 (
+	cat_id int not null auto_increment,
+    name varchar(100),
+    age int,
+    primary key (cat_id)
+);
+desc unique_cats2;
+-- cat_id 는 not null 이라서, insert할때 값을 꼭 써줘야 합니다.
+-- 그런데, cat_id는 auto_increment 로 설정했으므로,
+-- 디비가 알아서 값을 채워주니까, 우리가 인서트에 값 넣을 필요 없다.
+insert into unique_cats2 (name, age)
+	values ("Skippy", 4);
+select * from unique_cats2;
+
+insert into unique_cats2 (name, age)
+	values ("Jiff", 3);
+select * from unique_cats2;
+
+-- 테이블 설계
+-- 테이블 명 : employees
+-- id : 숫자 ( 자동 증가 ), 필수, 프라이머리키
+-- last_name : 문자(30개) , 필수
+-- first_name : 문자(30개) , 필수
+-- middle_name : 문자 (30개), 필수 아님
+-- age : 숫자 , 필수
+-- current_status : 문자(20자), 필수아님 , 디폴트로 "employed" 
+-- 첫번째 방법
+create table employees (
+	id int not null auto_increment,
+    last_name varchar(30) not null,
+    first_name varchar(30) not null,
+    middle_name varchar(30),
+    age int not null,
+    current_status varchar(20) default "employed",
+    primary key (id)
+);
+-- 두번째 방법
+create table employees (
+	id int not null auto_increment primary key,
+    last_name varchar(30) not null,
+    first_name varchar(30) not null,
+    middle_name varchar(30),
+    age int not null,
+    current_status varchar(20) default "employed"    
+);
+
+-- cats 테이블 삭제하고 새로 만듭니다.
+drop table cats;
+
+create table cats(
+	cat_id int not null auto_increment primary key,
+    name varchar(100),
+    breed varchar(100),
+    age int
+);
+desc cats;
+-- 데이터를 한번에 여러개를 insert 
+insert into cats (name, breed, age)
+		values	("Ringo", "Tabby", 4),
+				("Cindy", "Maine Coon", 11),
+                ("Dumbleddore", "Maine Coon", 11),
+                ("Egg", "Persian", 4),
+                ("Misty", "Tabby", 13),
+                ("George Michael", "Ragdoll", 9),
+                ("Jackson", "Sphynx", 7);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
