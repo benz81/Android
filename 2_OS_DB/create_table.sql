@@ -256,6 +256,43 @@ insert into cats (name, breed, age)
                 ("Misty", "Tabby", 13),
                 ("George Michael", "Ragdoll", 9),
                 ("Jackson", "Sphynx", 7);
+                
+select * from cats;
+
+-- 저장되어 있는 값을, 다른 값으로 바꾸는 것이 update
+
+-- 품종이 Tabby 인것들을, 품종을 Shorthair 로 변경한다.
+-- update cats set breed = "Shorthair"  where breed = "Tabby"	
+-- Error Code: 1175. You are using safe update mode and 
+-- you tried to update a table without a WHERE 
+-- that uses a KEY column To disable safe mode, 
+-- toggle the option in 
+-- Preferences -> SQL Editor and reconnect.	0.000 sec
+
+update cats set breed = "Shorthair" 
+where breed = "Tabby" and cat_id > 0;
+
+select * from cats;
+
+-- 이름이 Misty 인 고양이 나이를 14로 변경하세요.
+update cats set age = 14
+where name = "Misty" ;
+
+select * from cats;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
