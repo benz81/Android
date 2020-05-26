@@ -147,6 +147,26 @@ insert into cats3 (age) values (5);
 select * from cats3;
 insert into cats3 (name) values ("Momo");
 select * from cats3;
+select * from cats;
+
+desc cats;
+
+-- 회사의 정책이 바뀌어서, name이 없으면 null 이 아니라, "unnamed"로
+-- age 가 없으면, null 이 아니라, 99 세로 설정하시오.
+-- 라고 회사 정책이 정해졌다.
+create table cats4 
+(
+	name varchar(100) default "unnamed",
+    age int default 99
+);
+insert into cats4 (name, age) values ("Momo", 3);
+select * from cats4;
+insert into cats4 (name) values ("Kity");
+select * from cats4;
+insert into cats4 (age) values (10);
+select * from cats4;
+insert into cats4 () values ();
+select * from cats4;
 
 
 
