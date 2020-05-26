@@ -89,11 +89,64 @@ insert into people (first_name, last_name, age)
 
 select * from people;
 
+-- cats 테이블에 데이터 인서트, 이름은 아래 문자열.
+-- "This cat is named Charlie which is also a human name. 
+--  In fact I know a couple of Charlies. Fun Fact"
+-- 나이는 10살.
+insert into cats (name, age)
+	values ("This cat is named Charlie which is also a human name. In fact I know a couple of Charlies. Fun Fact",
+			10);
+desc cats;
 
+-- NULL 이란것, 값이 없다.
+-- 0 이다 라는것과는 다른것이다.
+-- NULL 이란것은, 공백 과도 다른것이다.
+insert into cats (name)
+		values ("Alabama");
+select * from cats;
 
+insert into cats ()
+		values ();
+        
+select * from cats;
 
+-- 컬럼 정의할때, NOT NULL 키워드를 사용하여 테이블 생성하는 경우
+-- 테이블생성 . 테이블명 : cats2
+-- 컬럼 name : 문자열100개까지, 그리고 NOT NULL
+-- 컬럼 age : 정수, 그리고 NOT NULL
+create table cats2 
+(
+	name varchar(100) not null,
+    age int not null
+);
+desc cats2;
+desc cats;
+select * from cats;
 
+-- cats2 ( Not NULL ) 테이블에 데이터를 인서트
+insert into cats2 (name, age) 
+		values ("Mit", 3);
+select * from cats2;
+insert into cats2 (name) 
+		values  ("Young");
+select * from cats2;
 
+insert into cats2 (age)
+		values  (10);
+select * from cats2;
+
+-- cats3 테이블 생성
+create table cats3 
+(
+	name varchar(100) not null,
+    age int 
+);
+insert into cats3 (name, age) values ("Hi", 3);
+select * from cats3;
+insert into cats3 (age) values (5);
+select * from cats3;
+insert into cats3 (name) values ("Momo");
+select * from cats3;
 
 
 
