@@ -32,3 +32,11 @@
 11. sample db - https://drive.google.com/open?id=1sw3KVYCdChLZU9Q_DQTCYp2OEkMp1q5c
 
 12. sample db (join) - https://drive.google.com/open?id=1eTRPErkm1IpPwjitSFiLNihUy3JsL0Fe
+
+12. MariaDB Remote Access - https://drive.google.com/open?id=1SZTB-sMNz_L3OU8uRUn901AiGuNqexv8nJU-KXXCdsM
+
+13. Books 테이블에 insert - https://drive.google.com/open?id=1IHGP15up9P9iliMUCLXab6f-wYpEamuG
+
+14. DB String 문제 - https://drive.google.com/open?id=1AQPMzJvUCoqTvt_PyfdTLvYCx12W2TmEFU8WBAUzS4Y
+
+
