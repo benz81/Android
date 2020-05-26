@@ -280,7 +280,55 @@ where name = "Misty" ;
 
 select * from cats;
 
+-- 이름이 Jackson 인 고양이 이름을, Jack으로 바꾸세요.
+update cats set name = "Jack"
+where name = "Jackson";
 
+-- 이름이 Jackson 인 고양이는 몇마리인지 조회하세요.
+select count(*) from cats
+where name = "Jackson";
+
+-- 이름이 Jack 인 고양이는 몇마리인지 조회하세요.
+select count(*) from cats
+where name = "Jack";
+
+-- 이름이 Ringo 인 고양이의 품종을 British Shorthair 로 바꾸세요.
+update cats set breed = "British Shorthair"
+where name = "Ringo";
+
+-- 품종에 hair 가 들어있는 데이터를 조회하시오.
+select * from cats
+where breed like "%hair%";
+
+-- 품종이 Maine Coon 인 고양이의 나이를 12 로 변경하세요.
+update cats set age = 12
+where breed = "Maine Coon";
+
+-- 고양이의 나이가 8살보다 큰 고양이만 조회하세요.
+select * from cats
+where age > 8;
+
+-- 나이가 8보다 큰 고양이의 이름과 품종을 "Kitty", "Ragdoll"로 변경.
+update cats set name="Kitty" , breed = "Ragdoll"
+where age > 8;
+
+select * from cats;
+
+-- 나이가 4인 고양이의 데이터를 삭제하시오.
+delete from cats
+where age = 4;
+
+select * from cats;
+
+-- 고양이 나이가 12인 고양이의 나이를 5로 변경하세요.
+update cats set age = 3
+where age = 5;
+
+-- 고양의 아이디와 나이가 같은 데이터를 삭제하시오.
+delete from cats
+where cat_id = age;
+
+select * from cats;
 
 
 
