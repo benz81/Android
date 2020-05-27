@@ -40,3 +40,5 @@
 14. DB String 문제 - https://drive.google.com/open?id=1AQPMzJvUCoqTvt_PyfdTLvYCx12W2TmEFU8WBAUzS4Y
 
 15. DB 실습문제 2 - https://docs.google.com/presentation/d/1EUJFxMxHrkL9IQl_gIOF5FwitWfvUsrKnpW8vaWzSvs/edit?usp=sharing
+
+16. datetime format - https://www.tutorialspoint.com/mysql/mysql-date-time-functions.htm
