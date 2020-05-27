@@ -80,11 +80,20 @@ select title from books where title like "the%";
 select title from books where title like "%the%";
 select title from books where title like "%the";
 
+-- 자리수가 몇자리냐? _ 갯수만큼 자리수를 뜻합니다.
+select title, stock_quantity 
+from books 
+where stock_quantity like "___";
 
+select title  
+from books 
+where title like "________";
 
+select title 
+from books
+where title like "___ ________";
 
-
-
+-- "(02)234-5678" like "(__)___-____"
 
 
 
