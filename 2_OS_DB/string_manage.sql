@@ -106,6 +106,24 @@ select concat( author_lname , " is ", char_length(author_lname)   )
 as author_len
 from books;
 
+-- upper() , lower() : 대문자로 변경, 소문자로 변경.
+
+use mydb;
+select * from books;
+
+-- 타이틀에 저장된 문자열을 대문자로 바꿔서 조회.
+select upper(title) from books;
+
+-- 책 제목을 소문자로 가져와서, My favorite book is 책제목(소문자)
+select  concat( "My favorite book is ", lower(title))
+from books;
+
+
+
+
+
+
+
 
 
 
