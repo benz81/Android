@@ -44,3 +44,5 @@
 16. datetime format - https://www.tutorialspoint.com/mysql/mysql-date-time-functions.htm
 
 17. DB 실습문제 3 - https://docs.google.com/presentation/d/1buIaMinIU-sHC3sG1KnvGT6rpqECWgrads3hU4t3VtM/edit?usp=sharing
+
+18. DB 실습문제 4 - https://docs.google.com/presentation/d/1PXDLIaoqQMc_t7xgvFMl31ggwwMzJ_QtyCH0go_gzfU/edit?usp=sharing
