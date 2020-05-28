@@ -90,6 +90,16 @@ on s.id = p.student_id
 group by s.first_name
 order by average desc;
 
+-- students , papers
+desc students;
+desc papers;
+
+select * from students;
+select * from papers;
+delete from students where id = 1;
+
+
+
 
 
 
