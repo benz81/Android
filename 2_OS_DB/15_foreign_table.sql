@@ -79,6 +79,16 @@ select title, stock_quantity,
 from books;
 
 -- 5. average 가 70점 이상이면 PASSING, 아니면 FAILING
+select s.first_name, avg(ifnull(p.grade, 0)) as average,
+	case
+		when avg(ifnull(p.grade, 0)) >= 70 then "PASSING"
+        else "FAILING"
+    end as passiing_status
+from students as s
+left join papers as p
+on s.id = p.student_id
+group by s.first_name
+order by average desc;
 
 
 
