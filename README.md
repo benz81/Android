@@ -46,3 +46,5 @@
 17. DB 실습문제 3 - https://docs.google.com/presentation/d/1buIaMinIU-sHC3sG1KnvGT6rpqECWgrads3hU4t3VtM/edit?usp=sharing
 
 18. DB 실습문제 4 - https://docs.google.com/presentation/d/1PXDLIaoqQMc_t7xgvFMl31ggwwMzJ_QtyCH0go_gzfU/edit?usp=sharing
+
+19. DB 실습문제 5 - https://docs.google.com/presentation/d/1bJocq81ssqBg6Vcw5UYonitn5nZslBYgY8XZIrQHCfQ/edit?usp=sharing
