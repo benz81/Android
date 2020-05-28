@@ -25,6 +25,90 @@ create table papers (
 		on delete cascade
 );
 
+select * from students;
+select * from papers;
+
+-- 1. 이름, 제목, 등급을 조회하되, 등급 내림차순으로.
+select s.first_name, p.title, p.grade
+from students as s
+join papers as p
+on s.id = p.student_id
+order by p.grade desc;
+
+-- 2. left join 조인
+select s.first_name, p.title, p.grade
+from students as s
+left join papers as p
+on s.id = p.student_id;
+
+-- 3. Null 로 되어있는 데이터를 처리.
+select s.first_name, ifnull(p.title, "MISSING") , 
+		ifnull(	p.grade , 0 )
+from students as s
+left join papers as p
+on s.id = p.student_id;
+-- 4. 사람별 그레이드 평균을 구하고, 평균 내림차순으로 정렬.
+select s.first_name, avg(  ifnull(p.grade, 0)  )
+from students as s
+left join papers as p
+on s.id = p.student_id
+group by s.first_name;
+
+-- case statements 
+select title, released_year,
+	case 
+		when released_year >= 2000 then "Modern"
+        else "20th Century"
+	end as genre
+from books;
+
+select title, stock_quantity,
+	case
+		when stock_quantity between 0 and 50 then "*"
+        when stock_quantity between 51 and 100 then "**"
+        else "***"
+	end as stock
+from books;
+
+select title, stock_quantity,
+	case 
+		when stock_quantity <= 50 then "*"
+        when stock_quantity <= 100 then "**"
+        else "***"
+	end as stock
+from books;
+
+-- 5. average 가 70점 이상이면 PASSING, 아니면 FAILING
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
