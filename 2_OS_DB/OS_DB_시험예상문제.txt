@@ -46,6 +46,8 @@
 10. centos 에 vsftpd 라는 소프트웨어를 설치하려한다.
 	sudo yum install vsftpd
 
+11.0  ssh : 22,  mysql : 3306  port (포트), IP 
+
 11. DB SQL
 
    - crud : create read update delete
