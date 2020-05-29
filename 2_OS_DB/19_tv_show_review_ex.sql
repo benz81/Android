@@ -49,6 +49,25 @@ left join reviews as rv
 on r.id = rv.reviewer_id
 group by r.id ;
 
+select first_name, last_name, 
+	count(rv.rating) as count,
+	round(ifnull( min(rv.rating), 0), 2) as min,
+    round(ifnull( max(rv.rating), 0), 2) as max,
+    round( ifnull(avg(rv.rating), 0), 2) as avg,
+    case
+		when count(rv.rating) >= 10 then "POWER USER"
+		when count(rv.rating) > 0 then "ACTIVE"
+        else "INACTIVE"
+    end as status
+from reviewers as r
+left join reviews as rv
+on r.id = rv.reviewer_id
+group by r.id;
+    
+
+
+
+
 -- 영화제목으로 알파벳 오름차순 정렬해서, 
 -- 영화제목, 별점, 리뷰작성자이름(합쳐서) 조회하시오.
 select s.title, rv.rating, 
