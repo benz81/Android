@@ -1,0 +1,72 @@
+1. doc 디렉토리 생성       $mkdir
+2. doc 디렉토리로 이동.    $cd doc
+
+3. doc 디렉토리에서, 파일명이 test 인 파일 
+   하나 만들기
+      파일 내용 :   echo "Hello"
+
+	vi test
+	i
+	echo "Hello"
+	<esc>
+	:wq
+
+4. 위의 test 파일의 권한을 변경하기.
+    rwxr-xr-x 로 변경하시오.
+            rwx     r-x         r-x 로 변경
+           4+2+1  4+0+1  4+0+1
+
+	chmod  755 test 
+
+5. test 파일을 실행하기
+	./test
+
+	./ => 의 뜻은? 지금 이 디렉토리.
+	
+
+6. test 파일을 /home/ec2-user 디렉토리로 복사
+
+     내 현재 디렉토리가 /home/ec2-user/doc 라면	
+	cp test /home/ec2-user
+
+     내 현재 디렉토리가 /home/ec2-user 라면
+              cp doc/test ./
+
+7. test 파일 지우기.
+     내 현제 디렉토리가 /home/ec2-user 면
+	rm test
+
+8. doc 디렉토리 지우기.
+       rm -r doc
+       rm -rf doc 
+
+9. 현재 나의 위치는? 
+      pwd
+
+10. centos 에 vsftpd 라는 소프트웨어를 설치하려한다.
+	sudo yum install vsftpd
+
+11. DB SQL
+
+   - crud : create read update delete
+   - MySQL DB port 
+   - group by 
+   - order by 
+   - limit
+   - 테이블 설계 (3개자짜리)  단답형.
+   - join  ( inner join , left join)
+   - case  when then else end  단답형
+   - char_length , concat 
+   
+
+
+
+
+
+
+
+
+
+
+
+
