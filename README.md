@@ -50,3 +50,5 @@
 19. DB 실습문제 5 - https://docs.google.com/presentation/d/1bJocq81ssqBg6Vcw5UYonitn5nZslBYgY8XZIrQHCfQ/edit?usp=sharing
 
 20. aws - https://drive.google.com/file/d/1fbZN-iuVG_NZM0HxNUSEXLUVTqHMKiju/view?usp=sharing
+
+21. 스키마 설계 실습 - https://docs.google.com/presentation/d/14hsC9F9mN-aGIclRCshFwoGrxAKnPKOQ_xUEwIkVgXk/edit?usp=sharing
