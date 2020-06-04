@@ -52,3 +52,6 @@
 20. aws - https://drive.google.com/file/d/1fbZN-iuVG_NZM0HxNUSEXLUVTqHMKiju/view?usp=sharing
 
 21. 스키마 설계 실습 - https://docs.google.com/presentation/d/14hsC9F9mN-aGIclRCshFwoGrxAKnPKOQ_xUEwIkVgXk/edit?usp=sharing
+
+
+22. jdk 1.8 - https://mega.nz/folder/EolCyShY#D0QUZdcafG1mUXbqWywFsg
