@@ -1,20 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
-
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/txtTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#2196F3"
-        android:padding="30dp"
         android:layout_marginTop="30dp"
+        android:background="#2196F3"
+        android:gravity="center"
+        android:padding="30dp"
         android:text="I am an Android Developer!"
         android:textColor="#ffffff"
-        android:gravity="center"
         android:textSize="36sp" />
-</RelativeLayout>
+
+    <EditText
+        android:id="@+id/editName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="이름 입력"
+        android:textSize="20sp"
+        android:layout_margin="20dp"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/editPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:hint="전화번호 입력"
+        android:textSize="20sp"
+        android:inputType="phone" />
+
+    <Button
+        android:id="@+id/btnClick"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="30dp"
+        android:background="#F44336"
+        android:text="Click Me!"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
+</LinearLayout>
