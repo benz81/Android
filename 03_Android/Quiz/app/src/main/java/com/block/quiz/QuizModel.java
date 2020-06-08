@@ -17,11 +17,11 @@ public class QuizModel {
         this.mQuestion = mQuestion;
     }
 
-    public boolean ismAnswer() {
+    public boolean getAnswer() {
         return mAnswer;
     }
 
-    public void setmAnswer(boolean mAnswer) {
+    public void setAnswer(boolean mAnswer) {
         this.mAnswer = mAnswer;
     }
 }

@@ -28,10 +28,10 @@ public class MainActivity extends AppCompatActivity {
             new QuizModel(R.string.q8, false),  // [7]
             new QuizModel(R.string.q9, true),  // [8]
             new QuizModel(R.string.q10, false)  // [9]
-    };
+    };                                                    //  [12]
 
     int questionIndex = 0;
-
+    int score = 0;
 
 
     @Override
@@ -49,7 +49,10 @@ public class MainActivity extends AppCompatActivity {
         btnTrue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                questionIndex = questionIndex + 1;
+                evaluateUserAnswer(true);
+
+                questionIndex = (questionIndex + 1 ) % 10 ;
+                // 인덱스에는 10 이상은 올수가 없다.
                 QuizModel q = questionArray[questionIndex];
                 txtQuestion.setText(q.getmQuestion());
             }
@@ -58,15 +61,40 @@ public class MainActivity extends AppCompatActivity {
         btnFalse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                questionIndex = questionIndex + 1;
+                evaluateUserAnswer(false);
+
+                questionIndex = (questionIndex + 1 ) % 10;
                 QuizModel q = questionArray[questionIndex];
                 txtQuestion.setText(q.getmQuestion());
             }
         });
+
         QuizModel q = questionArray[questionIndex];
         txtQuestion.setText(q.getmQuestion());
+        txtStats.setText(""+score);
 
     }
+
+    // 유저의 대답을 체크하는 함수 : 토스트로 "정답입니다" , "오답입니다" 를 보여준다.
+    void evaluateUserAnswer(boolean userAnswer){
+        // 현재 문제의 정답을 가져오는 코드
+        QuizModel q = questionArray[questionIndex];
+        boolean answer = q.getAnswer();
+
+        // 유저의 대답과, 현재 정답을 비교하여, 토스트 하는 코드
+        if(userAnswer == answer){
+            score = score + 1;
+            Toast.makeText(MainActivity.this, "정답입니다.", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(MainActivity.this, "오답입니다.", Toast.LENGTH_SHORT).show();
+        }
+
+        txtStats.setText(""+score);
+        quizPB.incrementProgressBy(1);
+
+    }
+
+
 }
 
 
