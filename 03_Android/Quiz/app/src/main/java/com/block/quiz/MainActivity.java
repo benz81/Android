@@ -1,8 +1,11 @@
 package com.block.quiz;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -53,6 +56,22 @@ public class MainActivity extends AppCompatActivity {
 
                 questionIndex = (questionIndex + 1 ) % 10 ;
                 // 인덱스에는 10 이상은 올수가 없다.
+                Log.i("MyQuiz", "questionIndex : " + questionIndex);
+                if(questionIndex == 0){
+                    // 알러트 다이얼로그를 이용하려면, AlertDialog.Builder 를 객체 생성.
+                    AlertDialog.Builder quizAlert = new AlertDialog.Builder(MainActivity.this);
+                    quizAlert.setTitle("퀴즈 앱 종료");
+                    quizAlert.setMessage("당신의 점수는 : " + score);
+                    quizAlert.setPositiveButton("앱 종료", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // 앱을 종료시키는 코드
+                            finish();
+                        }
+                    });
+                    quizAlert.show();
+                    return;
+                }
                 QuizModel q = questionArray[questionIndex];
                 txtQuestion.setText(q.getmQuestion());
             }
@@ -64,6 +83,20 @@ public class MainActivity extends AppCompatActivity {
                 evaluateUserAnswer(false);
 
                 questionIndex = (questionIndex + 1 ) % 10;
+                Log.i("MyQuiz", "questionIndex : " + questionIndex);
+                if(questionIndex == 0){
+                    AlertDialog.Builder quizAlert = new AlertDialog.Builder(MainActivity.this);
+                    quizAlert.setTitle("퀴즈 앱 종료");
+                    quizAlert.setMessage("당신의 점수는 : " + score);
+                    quizAlert.setPositiveButton("앱 종료", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    });
+                    quizAlert.show();
+                    return;
+                }
                 QuizModel q = questionArray[questionIndex];
                 txtQuestion.setText(q.getmQuestion());
             }
