@@ -59,3 +59,5 @@
 23. 샘플 앱 완성 모양 - https://docs.google.com/presentation/d/1Bdh05PFg37RVJTpR1e54OyGc3ZiiGIYHge4NDS-eOC0/edit?usp=sharing
 
 24. 테스트 앱 - https://docs.google.com/presentation/d/1n9l-qHhXOuUpV2r0isXoxa64Wc0RA5-WLD8o_3iSTfA/edit?usp=sharing
+
+25. android activity life cycle - https://docs.google.com/presentation/d/1gliKmMb8BThU-QIjfMuRmn9-WTTXX6yrLMvRwLi7eDw/edit?usp=sharing
