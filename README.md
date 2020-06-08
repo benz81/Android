@@ -62,6 +62,10 @@
 
 25. 샘플2 - https://docs.google.com/presentation/d/1iF3dxBLcCB_CTZEVPRuIMa01HtsYiZmTYcqvUOSFI1E/edit?usp=sharing
 
-27. 실습 - https://docs.google.com/presentation/d/1POAPZf0juVnhXe2MnZTE0YaeUMlk7SHC2j9-4IdPbus/edit?usp=sharing
+27. 실습02 - https://docs.google.com/presentation/d/1POAPZf0juVnhXe2MnZTE0YaeUMlk7SHC2j9-4IdPbus/edit?usp=sharing
 
 28. android activity life cycle - https://docs.google.com/presentation/d/1gliKmMb8BThU-QIjfMuRmn9-WTTXX6yrLMvRwLi7eDw/edit?usp=sharing
+
+
+29. 실습03 - https://docs.google.com/presentation/d/18IQxRz_p7z6ZkX-eUm0JxOxk43xsO0rUyvsjCCgwMqw/edit?usp=sharing
+
