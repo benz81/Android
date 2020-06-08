@@ -36,6 +36,14 @@
         android:textSize="20sp"
         android:inputType="phone" />
 
+    <ImageView
+        android:id="@+id/imgCenter"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/apple" />
+
     <Button
         android:id="@+id/btnClick"
         android:layout_width="150dp"
