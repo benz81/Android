@@ -71,10 +71,9 @@ public class MainActivity extends AppCompatActivity {
 
         QuizModel q = questionArray[questionIndex];
         txtQuestion.setText(q.getmQuestion());
-        txtStats.setText(""+score);
+        txtStats.setText("점수는 : "+score);
 
     }
-
     // 유저의 대답을 체크하는 함수 : 토스트로 "정답입니다" , "오답입니다" 를 보여준다.
     void evaluateUserAnswer(boolean userAnswer){
         // 현재 문제의 정답을 가져오는 코드
@@ -88,8 +87,7 @@ public class MainActivity extends AppCompatActivity {
         }else{
             Toast.makeText(MainActivity.this, "오답입니다.", Toast.LENGTH_SHORT).show();
         }
-
-        txtStats.setText(""+score);
+        txtStats.setText("점수는 : "+score);
         quizPB.incrementProgressBy(1);
 
     }
