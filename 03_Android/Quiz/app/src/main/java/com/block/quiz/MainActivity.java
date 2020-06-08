@@ -17,6 +17,23 @@ public class MainActivity extends AppCompatActivity {
     Button btnTrue;
     Button btnFalse;
 
+    QuizModel[] questionArray = new QuizModel[]{
+            new QuizModel(R.string.q1, true), // [0]
+            new QuizModel(R.string.q2, false), // [1]
+            new QuizModel(R.string.q3, true),  // [2]
+            new QuizModel(R.string.q4, false), // [3]
+            new QuizModel(R.string.q5, true),  // [4]
+            new QuizModel(R.string.q6, false),  // [5]
+            new QuizModel(R.string.q7, true),  // [6]
+            new QuizModel(R.string.q8, false),  // [7]
+            new QuizModel(R.string.q9, true),  // [8]
+            new QuizModel(R.string.q10, false)  // [9]
+    };
+
+    int questionIndex = 0;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,21 +45,26 @@ public class MainActivity extends AppCompatActivity {
         btnTrue = findViewById(R.id.btnTrue);
         btnFalse = findViewById(R.id.btnFalse);
 
-        // btnTrue 눌렀을때, "트루 버튼이 눌렸습니다." 라고 토스트 보여주기.
+        // btnTrue 눌렀을때,
         btnTrue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "트루 번튼이 눌렸습니다.",
-                        Toast.LENGTH_SHORT).show();
+                questionIndex = questionIndex + 1;
+                QuizModel q = questionArray[questionIndex];
+                txtQuestion.setText(q.getmQuestion());
             }
         });
+        // btnFalse 눌렀을때,
         btnFalse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "폴스 번튼이 눌렸습니다.",
-                        Toast.LENGTH_SHORT).show();
+                questionIndex = questionIndex + 1;
+                QuizModel q = questionArray[questionIndex];
+                txtQuestion.setText(q.getmQuestion());
             }
         });
+        QuizModel q = questionArray[questionIndex];
+        txtQuestion.setText(q.getmQuestion());
 
     }
 }
