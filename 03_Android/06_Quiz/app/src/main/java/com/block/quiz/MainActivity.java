@@ -1,5 +1,6 @@
 package com.block.quiz;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -41,6 +42,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(savedInstanceState != null){
+            score = savedInstanceState.getInt("SCORE");
+            questionIndex = savedInstanceState.getInt("INDEX");
+        }else{
+            score = 0;
+            questionIndex = 0;
+        }
 
         txtQuestion = findViewById(R.id.txtQuestion);
         quizPB = findViewById(R.id.quizPB);
@@ -105,8 +114,18 @@ public class MainActivity extends AppCompatActivity {
         QuizModel q = questionArray[questionIndex];
         txtQuestion.setText(q.getmQuestion());
         txtStats.setText("점수는 : "+score);
-
+        Log.i("MyQuiz", "onCreate 호출됨");
     }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // "SCORE" 라는 키로, score 멤버변수에 저장된 현재 스코어를 저장.
+        outState.putInt("SCORE", score);
+        outState.putInt("INDEX", questionIndex);
+        Log.i("MyQuiz", "onSaveInstanceState 호출됨.");
+    }
+
     // 유저의 대답을 체크하는 함수 : 토스트로 "정답입니다" , "오답입니다" 를 보여준다.
     void evaluateUserAnswer(boolean userAnswer){
         // 현재 문제의 정답을 가져오는 코드

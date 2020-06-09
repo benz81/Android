@@ -1,7 +1,9 @@
 package com.block.calculator;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     EditText editNumber;
     Button btnCal;
     TextView txtResult;
+
+    int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +58,30 @@ public class MainActivity extends AppCompatActivity {
 
                 txtResult.setText(""+result);
 
+                count = count + 1;
+
+                if(count >= 5) {
+                    // 횟수가 5이상으면, 알러트 다이얼로그 띄운다.
+                    AlertDialog.Builder countAlert = new AlertDialog.Builder(MainActivity.this);
+                    countAlert.setTitle(R.string.alert_title);
+                    countAlert.setMessage(R.string.alert_msg);
+                    countAlert.setPositiveButton(R.string.alert_btn, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // 앱을 종료시키는 코드
+                            finish();
+                        }
+                    });
+                    // 유저가 화면의 다른곳을 눌러도, 알러트다이얼로그가 없어지지 않게 한다.
+                    countAlert.setCancelable(false);
+                    // 화면에 위의 다이얼로그를 띄워라.
+                    countAlert.show();
+
+                    return;
+                }
+
             }
         });
-
-
     }
+
 }

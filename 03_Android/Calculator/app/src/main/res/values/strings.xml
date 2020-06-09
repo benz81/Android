@@ -8,4 +8,9 @@
     <string name="hint_enter_number">Enter Number...</string>
     <string name="btn_cal">calculate the result</string>
     <string name="result">Result</string>
+
+    <string name="alert_title">5회 완료</string>
+    <string name="alert_msg">5회가 완료되어 앱을 종료합니다.</string>
+    <string name="alert_btn">앱 종료</string>
+
 </resources>
