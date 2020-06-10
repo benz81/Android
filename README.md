@@ -69,3 +69,6 @@
 
 29. 실습03 - https://docs.google.com/presentation/d/18IQxRz_p7z6ZkX-eUm0JxOxk43xsO0rUyvsjCCgwMqw/edit?usp=sharing
 
+30. api - https://docs.google.com/presentation/d/1meUAHkNtToaP0CuJ2kbQMeJvFQK0BXmHRNQP5xEcbbU/edit?usp=sharing
+
+31. 안드로이드 에뮬레이터에서 volley 동작하도록 설정하는 방법 - https://developside.tistory.com/85
