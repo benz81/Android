@@ -74,3 +74,5 @@
 31. 안드로이드 에뮬레이터에서 volley 동작하도록 설정하는 방법 - https://developside.tistory.com/85
 
 32. json - https://docs.google.com/presentation/d/10UqNQVZ9x5ZyMZTs9UC8WBJuQKmjwgsCi5wjdy69_6o/edit?usp=sharing
+
+33. android app dev test - https://docs.google.com/presentation/d/1l-co-s_dWyNVNGYZm-yDBzWkKpA6_KYn4HzgeLeybEU/edit?usp=sharing
