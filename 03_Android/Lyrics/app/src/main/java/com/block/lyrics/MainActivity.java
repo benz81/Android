@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -26,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
     EditText editSong;
     Button btnApi;
     TextView txtLyrics;
-
     String requestUrl = "https://api.lyrics.ovh/v1/";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,14 @@ public class MainActivity extends AppCompatActivity {
 
                 // 2. 두번째 에디트 텍스트인, editSong에서, 노래 제목 문자열을 가져온다.
                 String song = editSong.getText().toString();
+
+                // 2-2. 여기서, 위의 두개 문자열에 글자가 들어있는지를 확인해야 한다.
+                if(artist.isEmpty() || song.isEmpty()){
+                    Toast.makeText(MainActivity.this, "가수와 노래제목을 입력하세요.",
+                            Toast.LENGTH_SHORT).show();
+                    txtLyrics.setText("");
+                    return;
+                }
 
                 // 3. 위의 두개문자열을 파라미터로 만든다.
                 String url = requestUrl + artist + "/" + song;
