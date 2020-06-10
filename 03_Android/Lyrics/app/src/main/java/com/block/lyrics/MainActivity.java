@@ -17,6 +17,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
@@ -64,6 +65,11 @@ public class MainActivity extends AppCompatActivity {
                                         // response 변수에, 데이터가 실려서 옵니다.
                                         // 여기서, 우리가 원하는 데이터를 파싱합니다.
                                         Log.i("song", "result : " +response.toString());
+                                        try {
+                                            txtLyrics.setText(response.getString("lyrics"));
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
                                     }
                                 }, new Response.ErrorListener() {
                                     @Override
