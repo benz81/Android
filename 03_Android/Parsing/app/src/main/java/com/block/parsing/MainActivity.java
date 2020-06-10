@@ -12,6 +12,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,6 +33,18 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.i("Parsing", response.toString());
+                        try {
+                            int userId = response.getInt("userId");
+                            int id = response.getInt("id");
+                            String title = response.getString("title");
+                            boolean completed = response.getBoolean("completed");
+                            Log.i("Parsing", "UserID : "+userId);
+                            Log.i("Parsing", "id : "+id);
+                            Log.i("Parsing", "title : "+title);
+                            Log.i("Parsing", "completed : "+completed);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 },
                 new Response.ErrorListener() {
