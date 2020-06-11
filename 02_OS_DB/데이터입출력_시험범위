@@ -1,5 +1,7 @@
 단답 + 객관식 시험 : 
 
+  문제 푸는 형식 : 종이 시험
+
   - 테이블 생성 create table, 
   - 테이블 컬럼 정보 보기 desc 테이블
   - 데이터 insert  
@@ -9,8 +11,13 @@
   
 포트폴리오 형 시험 : 
 
-  - 15 ~ 22 내에서 문제 냄.
+  - 범위 : 15 ~ 22 내에서 문제 냄.
     (15_foreign_table.sql ~ 22_instart_sql.sql)
   
+  - 문제 푸는 형식 : 
+    MySQL WorkBench 를 이용해서, 
+    쿼리문 작성 후, 
+    파일 저장하여 
+    blockenters@gmail.com 으로 이메일 발송
 
 
