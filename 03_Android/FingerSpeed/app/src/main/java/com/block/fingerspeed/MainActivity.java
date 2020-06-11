@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     // 상수 선언
-    public static final int TAB_COUNT = 10;
+    public static final int TAB_COUNT = 100;
 
     TextView txtTimer;
     TextView txtCount;
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     int tabCount = TAB_COUNT;
     int remainingTime;
 
-
+    TextView txtCheat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         txtTimer = findViewById(R.id.txtTimer);
         txtCount = findViewById(R.id.txtCount);
+
+        txtCheat = findViewById(R.id.txtCheat);
+        txtCheat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(tabCount > 10){
+                    tabCount = tabCount - 10;
+                    txtCount.setText(""+tabCount);
+                }
+            }
+        });
+
         btnTap = findViewById(R.id.btnTap);
         btnTap.setOnClickListener(new View.OnClickListener() {
             @Override

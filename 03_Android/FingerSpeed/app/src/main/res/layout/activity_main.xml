@@ -10,6 +10,11 @@
 
 
     <TextView
+        android:id="@+id/txtCheat"
+        android:layout_width="150dp"
+        android:layout_height="50dp" />
+
+    <TextView
         android:id="@+id/txtTimer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
