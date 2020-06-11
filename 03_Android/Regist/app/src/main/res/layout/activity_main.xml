@@ -48,7 +48,7 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/editTextTextEmailAddress"
+                android:id="@+id/editEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -56,7 +56,7 @@
                 android:inputType="textEmailAddress" />
 
             <EditText
-                android:id="@+id/editTextTextPassword"
+                android:id="@+id/editPasswd1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -64,7 +64,7 @@
                 android:inputType="textPassword" />
 
             <EditText
-                android:id="@+id/editTextTextPassword2"
+                android:id="@+id/editPasswd2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -74,7 +74,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnReg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
