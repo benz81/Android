@@ -55,7 +55,7 @@ select * from cats;
 -- Tina  ,  Belcher ,  13
 -- Bob , Belcher , 42
 create table people (
-	first_name varchar(20),
+    first_name varchar(20),
     last_name varchar(20),
     age int
 );
