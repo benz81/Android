@@ -76,3 +76,5 @@
 32. json - https://docs.google.com/presentation/d/10UqNQVZ9x5ZyMZTs9UC8WBJuQKmjwgsCi5wjdy69_6o/edit?usp=sharing
 
 33. android app dev test - https://docs.google.com/presentation/d/1l-co-s_dWyNVNGYZm-yDBzWkKpA6_KYn4HzgeLeybEU/edit?usp=sharing
+
+34. 실습04 타이머앱 - https://docs.google.com/presentation/d/1UlvkfNeE90mQo5LfnohCxBTw1k5c4QH4VidOZhzLD48/edit?usp=sharing
