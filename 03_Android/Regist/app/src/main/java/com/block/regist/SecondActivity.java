@@ -18,6 +18,8 @@ public class SecondActivity extends AppCompatActivity {
     Button btnTurtle;
     Button btnOK;
 
+    String email;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +28,8 @@ public class SecondActivity extends AppCompatActivity {
         btnRabbit = findViewById(R.id.btnRabbit);
         btnTurtle = findViewById(R.id.btnTurtle);
         btnOK = findViewById(R.id.btnOK);
+
+        email = getIntent().getStringExtra("email");
 
         btnRabbit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +55,7 @@ public class SecondActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         // todo 액티비티 새로 만들고 여기 코드 작성.
                         Intent i = new Intent(SecondActivity.this, WelcomeActivity.class);
+                        i.putExtra("email", email);
                         startActivity(i);
                         finish();
                     }
