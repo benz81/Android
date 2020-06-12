@@ -52,6 +52,7 @@ public class SecondActivity extends AppCompatActivity {
                         // todo 액티비티 새로 만들고 여기 코드 작성.
                         Intent i = new Intent(SecondActivity.this, WelcomeActivity.class);
                         startActivity(i);
+                        finish();
                     }
                 });
                 finishAlert.setNegativeButton("NO", new DialogInterface.OnClickListener() {

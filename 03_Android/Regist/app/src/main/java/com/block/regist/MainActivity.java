@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
                 // 두번째 액티비티 만든 후, 이 코드 작성.
                 Intent i = new Intent(MainActivity.this, SecondActivity.class);
                 startActivity(i);
+                // 현재의 액티비티를 종료
+                finish();
 
             }
         });
