@@ -79,4 +79,6 @@
 
 34. 실습04 타이머앱 - https://docs.google.com/presentation/d/1UlvkfNeE90mQo5LfnohCxBTw1k5c4QH4VidOZhzLD48/edit?usp=sharing
 
+35. 액티비티간 데이터 넘겨주기 - https://drive.google.com/file/d/1lgB3wDQ7jCGNDgd8MHogD9JvFyCReIYD/view?usp=sharing
+
 46. 메모리와 데이터 - https://docs.google.com/presentation/d/1sk9UHZhwCDuju73906Ux4JSz8VbrcjCNVjCu-MAyqEw/edit?usp=sharing
