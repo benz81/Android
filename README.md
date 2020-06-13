@@ -78,3 +78,5 @@
 33. android app dev test - https://docs.google.com/presentation/d/1l-co-s_dWyNVNGYZm-yDBzWkKpA6_KYn4HzgeLeybEU/edit?usp=sharing
 
 34. 실습04 타이머앱 - https://docs.google.com/presentation/d/1UlvkfNeE90mQo5LfnohCxBTw1k5c4QH4VidOZhzLD48/edit?usp=sharing
+
+46. 메모리와 데이터 - https://docs.google.com/presentation/d/1sk9UHZhwCDuju73906Ux4JSz8VbrcjCNVjCu-MAyqEw/edit?usp=sharing
