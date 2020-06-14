@@ -82,3 +82,6 @@
 35. 액티비티간 데이터 넘겨주기 - https://drive.google.com/file/d/1lgB3wDQ7jCGNDgd8MHogD9JvFyCReIYD/view?usp=sharing
 
 46. 메모리와 데이터 - https://docs.google.com/presentation/d/1sk9UHZhwCDuju73906Ux4JSz8VbrcjCNVjCu-MAyqEw/edit?usp=sharing
+
+47. 요구사항 확인 - https://docs.google.com/presentation/d/1aLlzZGg1H3sKPNRX7ptb-Kqt72f2juNLuVZ6Xjli3JA/edit?usp=sharing
+
