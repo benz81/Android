@@ -87,4 +87,4 @@
 
 48. 앱실습05 쉐어드프리퍼런스 - https://docs.google.com/presentation/d/1_s6-IUvFuJmjeaQmsr9OBdii0eQvbLXBF2kF5SoQVvI/edit?usp=sharing
 
-49. 안드로이드 자체 SQLite DB - https://docs.google.com/presentation/d/1rcjaZoq5jxHowxb6e2JfgQquU6wB5Nb06Brp14GQHGI/edit?usp=sharing
+49. SQLite DB 와 RecyclerView - https://docs.google.com/presentation/d/1rcjaZoq5jxHowxb6e2JfgQquU6wB5Nb06Brp14GQHGI/edit?usp=sharing
