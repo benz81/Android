@@ -78,3 +78,13 @@
 33. android app dev test - https://docs.google.com/presentation/d/1l-co-s_dWyNVNGYZm-yDBzWkKpA6_KYn4HzgeLeybEU/edit?usp=sharing
 
 34. 실습04 타이머앱 - https://docs.google.com/presentation/d/1UlvkfNeE90mQo5LfnohCxBTw1k5c4QH4VidOZhzLD48/edit?usp=sharing
+
+35. 액티비티간 데이터 넘겨주기 - https://drive.google.com/file/d/1lgB3wDQ7jCGNDgd8MHogD9JvFyCReIYD/view?usp=sharing
+
+46. 메모리와 데이터 - https://docs.google.com/presentation/d/1sk9UHZhwCDuju73906Ux4JSz8VbrcjCNVjCu-MAyqEw/edit?usp=sharing
+
+47. 요구사항 확인 - https://docs.google.com/presentation/d/1aLlzZGg1H3sKPNRX7ptb-Kqt72f2juNLuVZ6Xjli3JA/edit?usp=sharing
+
+48. 앱실습05 쉐어드프리퍼런스 - https://docs.google.com/presentation/d/1_s6-IUvFuJmjeaQmsr9OBdii0eQvbLXBF2kF5SoQVvI/edit?usp=sharing
+
+49. 안드로이드 자체 SQLite DB - https://docs.google.com/presentation/d/1rcjaZoq5jxHowxb6e2JfgQquU6wB5Nb06Brp14GQHGI/edit?usp=sharing
