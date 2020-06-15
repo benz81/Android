@@ -85,3 +85,6 @@
 
 47. 요구사항 확인 - https://docs.google.com/presentation/d/1aLlzZGg1H3sKPNRX7ptb-Kqt72f2juNLuVZ6Xjli3JA/edit?usp=sharing
 
+48. 앱실습05 쉐어드프리퍼런스 - https://docs.google.com/presentation/d/1_s6-IUvFuJmjeaQmsr9OBdii0eQvbLXBF2kF5SoQVvI/edit?usp=sharing
+
+
