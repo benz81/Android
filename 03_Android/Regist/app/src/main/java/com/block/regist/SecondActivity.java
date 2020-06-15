@@ -19,6 +19,7 @@ public class SecondActivity extends AppCompatActivity {
     Button btnOK;
 
     String email;
+    String passwd;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,8 +29,10 @@ public class SecondActivity extends AppCompatActivity {
         btnRabbit = findViewById(R.id.btnRabbit);
         btnTurtle = findViewById(R.id.btnTurtle);
         btnOK = findViewById(R.id.btnOK);
-
+        // 이메일 넘겨받는 코드
         email = getIntent().getStringExtra("email");
+        // 비밀번호도 넘겨 받아야 함.
+        passwd = getIntent().getStringExtra("passwd");
 
         btnRabbit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,9 +56,10 @@ public class SecondActivity extends AppCompatActivity {
                 finishAlert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // todo 액티비티 새로 만들고 여기 코드 작성.
+                        // 액티비티 새로 만들고 여기 코드 작성.
                         Intent i = new Intent(SecondActivity.this, WelcomeActivity.class);
                         i.putExtra("email", email);
+                        i.putExtra("passwd", passwd);
                         startActivity(i);
                         finish();
                     }
@@ -63,7 +67,7 @@ public class SecondActivity extends AppCompatActivity {
                 finishAlert.setNegativeButton("NO", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        finish();
+
                     }
                 });
                 finishAlert.setCancelable(false);

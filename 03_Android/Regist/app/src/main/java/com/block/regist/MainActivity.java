@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     EditText editPasswd1;
     EditText editPasswd2;
     Button btnReg;
+    Button btnLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         editPasswd1 = findViewById(R.id.editPasswd1);
         editPasswd2 = findViewById(R.id.editPasswd2);
         btnReg = findViewById(R.id.btnReg);
+        btnLogin = findViewById(R.id.btnLogin);
 
         btnReg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,10 +62,19 @@ public class MainActivity extends AppCompatActivity {
                 // 두번째 액티비티 만든 후, 이 코드 작성.
                 Intent i = new Intent(MainActivity.this, SecondActivity.class);
                 i.putExtra("email", email);
+                i.putExtra("passwd", passwd1);
                 startActivity(i);
                 // 현재의 액티비티를 종료
                 finish();
 
+            }
+        });
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(i);
             }
         });
 
