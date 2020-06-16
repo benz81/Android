@@ -22,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     String savedPassed;
     // 쉐어드 프리퍼런스를 멤버변수로 뺀다.
     SharedPreferences sp;
+    SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +34,8 @@ public class LoginActivity extends AppCompatActivity {
         checkAutoLogin = findViewById(R.id.checkAutoLogin);
 
         sp = getSharedPreferences("regist_pref", MODE_PRIVATE);
+        editor = sp.edit();
+
         savedEmail = sp.getString("email", null);
         savedPassed = sp.getString("passwd", null);
 
@@ -49,11 +52,11 @@ public class LoginActivity extends AppCompatActivity {
                     // 로그인 완료 화면 만들어서, 이메일 정보를 전달해 준다.
 
                     if(checkAutoLogin.isChecked()){
-                        SharedPreferences.Editor editor = sp.edit();
+
                         editor.putBoolean("auto_login", true);
                         editor.apply();
                     } else {
-                        SharedPreferences.Editor editor = sp.edit();
+
                         editor.putBoolean("auto_login", false);
                         editor.apply();
                     }
