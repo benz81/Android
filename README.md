@@ -88,3 +88,5 @@
 48. 앱실습05 쉐어드프리퍼런스 - https://docs.google.com/presentation/d/1_s6-IUvFuJmjeaQmsr9OBdii0eQvbLXBF2kF5SoQVvI/edit?usp=sharing
 
 49. SQLite DB 와 RecyclerView - https://docs.google.com/presentation/d/1rcjaZoq5jxHowxb6e2JfgQquU6wB5Nb06Brp14GQHGI/edit?usp=sharing
+
+50. 앱실습07 - https://docs.google.com/presentation/d/1bV27NiIdZV5Nfq0rt9GAhJjvTwM7TDagGw2b8yF9vE4/edit?usp=sharing
