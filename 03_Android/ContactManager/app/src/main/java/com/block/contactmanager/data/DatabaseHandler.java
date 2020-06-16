@@ -124,6 +124,33 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return contactList;
     }
 
+    // 데이터를 업데이트 하는 메서드.
+    public int updateContact(Contact contact){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(Util.KEY_NAME, contact.getName());
+        values.put(Util.KEY_PHONE_NUMBER, contact.getPhoneNumber());
+
+        // 데이터베이스 테이블 업데이트.
+        // update contacts set name="홍길동", phone="010-2222-2222" where id = 3;
+        int ret = db.update(Util.TABLE_NAME,    // 테이블명
+                values,     // 업데이트할 값
+                Util.KEY_ID + " = ?",   // where
+                new String[]{String.valueOf(contact.getId())}); // ? 에 들어갈 값
+        return ret;
+    }
+
+    // 데이터 삭제 메서드
+    public void deleteContact(Contact contact){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(Util.TABLE_NAME,  // 테이블 명
+                Util.KEY_ID + " = ?",   // where id = ?
+                new String[]{String.valueOf(contact.getId())});  // ? 에 해당하는 값.
+        db.close();
+    }
+
+
 }
 
 

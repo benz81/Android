@@ -11,6 +11,7 @@ import android.widget.Button;
 import com.block.contactmanager.data.DatabaseHandler;
 import com.block.contactmanager.model.Contact;
 
+import java.time.chrono.MinguoChronology;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,6 +32,22 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+
+        DatabaseHandler db = new DatabaseHandler(MainActivity.this);
+        Contact contact = db.getContact(4);
+        Log.i("myDB", "아이디 4번 데이터 : "+contact.getId() +", "+
+                contact.getName()+", " + contact.getPhoneNumber());
+        // 삭제 테스트
+        db.deleteContact(contact);
+
+
+        // 업데이트 테스트
+//        // 이름 바꾸기
+//        contact.setName("홍길동");
+//        // 업데이트 메소드 실행.
+//        db.updateContact(contact);
+
     }
 
     @Override
