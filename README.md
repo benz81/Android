@@ -90,3 +90,5 @@
 49. SQLite DB 와 RecyclerView - https://docs.google.com/presentation/d/1rcjaZoq5jxHowxb6e2JfgQquU6wB5Nb06Brp14GQHGI/edit?usp=sharing
 
 50. 앱실습07 - https://docs.google.com/presentation/d/1bV27NiIdZV5Nfq0rt9GAhJjvTwM7TDagGw2b8yF9vE4/edit?usp=sharing
+
+51. 애실습08 - https://docs.google.com/presentation/d/12YM4BGCNdWxSw4LQtVwBCUpb0R1gIKmgfm0Az_vxXnw/edit?usp=sharing
