@@ -138,6 +138,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 values,     // 업데이트할 값
                 Util.KEY_ID + " = ?",   // where
                 new String[]{String.valueOf(contact.getId())}); // ? 에 들어갈 값
+        db.close();
         return ret;
     }
 
@@ -148,6 +149,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 Util.KEY_ID + " = ?",   // where id = ?
                 new String[]{String.valueOf(contact.getId())});  // ? 에 해당하는 값.
         db.close();
+    }
+
+    // 테이블에 저장된 주소록 데이터의 전체 갯수를 리턴하는 메소드.
+    public int getCount(){
+        // select count(*) from contacts;
+        String countQuery = "select * from " + Util.TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        db.close();
+        return count;
     }
 
 
