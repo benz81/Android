@@ -35,13 +35,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
-        // 데이터베이스에서 테이블에 저장된 데이터 읽어서, 어레이리스트에 저장
-        DatabaseHandler db = new DatabaseHandler(MainActivity.this);
-        contactArrayList = db.getAllContacts();
-
-        // 우리가만든 하나의 셀 표시하는 어댑터를 생성해서, 리사이클러뷰에 연결
-        recyclerViewAdapter = new RecyclerViewAdapter(MainActivity.this, contactArrayList);
-        recyclerView.setAdapter(recyclerViewAdapter);
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,14 +49,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // 우리가 만든 데이터베이스 핸들러 클래스를, 객체 생성한다. => contacts 테이블이 생성된다.
+        // 데이터베이스에서 테이블에 저장된 데이터 읽어서, 어레이리스트에 저장
         DatabaseHandler db = new DatabaseHandler(MainActivity.this);
-        // 저장된 데이터를 읽어오는 코드.
-        ArrayList<Contact> contactList = db.getAllContacts();
-        for(Contact contact : contactList){
-            Log.i("myDB", "저장된 주소록의 데이터 id : " + contact.getId() +
-                    " 이름은 : " +contact.getName());
-        }
+        contactArrayList = db.getAllContacts();
+
+        // 우리가만든 하나의 셀 표시하는 어댑터를 생성해서, 리사이클러뷰에 연결
+        recyclerViewAdapter = new RecyclerViewAdapter(MainActivity.this, contactArrayList);
+        recyclerView.setAdapter(recyclerViewAdapter);
+    }
+
+    // 메인액티비티에, refresh 메소드 우리가 하나 만듬. 데이터베이스에서 정보 가져와서, 화면 갱신
+    public void refresh(){
+        DatabaseHandler db = new DatabaseHandler(MainActivity.this);
+        contactArrayList = db.getAllContacts();
+        recyclerViewAdapter = new RecyclerViewAdapter(MainActivity.this, contactArrayList);
+        recyclerView.setAdapter(recyclerViewAdapter);
+        recyclerViewAdapter.notifyDataSetChanged();
     }
 }
 
