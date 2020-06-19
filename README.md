@@ -94,3 +94,5 @@
 51. 앱실습08 - https://docs.google.com/presentation/d/12YM4BGCNdWxSw4LQtVwBCUpb0R1gIKmgfm0Az_vxXnw/edit?usp=sharing
 
 52. 안드로이드 복습 실습 1 - https://docs.google.com/presentation/d/1jwPbog1NVdTyqSh9q_v2jkcS738Qsq3dq66hhrJ7E4Q/edit?usp=sharing
+
+53. 텍스트와처 실습 : https://docs.google.com/presentation/d/1sbF8aejWEQnPiWLmZDB_pmwW8BSTCLOYR76FGJHUNF8/edit?usp=sharing
