@@ -31,15 +31,17 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            app:srcCompat="@android:drawable/ic_search_category_default" />
+            app:srcCompat="@android:drawable/ic_search_category_default"
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/imgClear"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="21dp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            app:srcCompat="@android:drawable/ic_notification_clear_all" />
+            app:srcCompat="@android:drawable/ic_notification_clear_all"
+            android:visibility="gone" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
