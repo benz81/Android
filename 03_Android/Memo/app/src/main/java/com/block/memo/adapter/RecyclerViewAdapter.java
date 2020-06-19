@@ -1,6 +1,7 @@
 package com.block.memo.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,9 +9,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.block.memo.R;
+import com.block.memo.UpdateMemo;
 import com.block.memo.model.Memo;
 
 import java.util.ArrayList;
@@ -55,6 +58,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public TextView txtTitle;
         public TextView txtContent;
         public ImageView imgDelete;
+        public CardView cardView;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -62,6 +66,25 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             txtTitle = itemView.findViewById(R.id.txtTitle);
             txtContent = itemView.findViewById(R.id.txtContent);
             imgDelete = itemView.findViewById(R.id.imgDelete);
+            cardView = itemView.findViewById(R.id.cardView);
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                     int index = getAdapterPosition();
+
+                     Memo memo = memoList.get(index);
+                     int id = memo.getId();
+                     String title = memo.getTitle();
+                     String content = memo.getContent();
+
+                     Intent i = new Intent(context, UpdateMemo.class);
+                     i.putExtra("id", id);
+                     i.putExtra("title", title);
+                     i.putExtra("content", content);
+                     context.startActivity(i);
+                }
+            });
+
         }
     }
 

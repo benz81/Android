@@ -158,5 +158,32 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return count;
     }
 
+    // 검색용 메소드 추가
+    public ArrayList<Memo> search(String keyword){
+        String searchQuery = "select id, title, content from "+Util.TABLE_NAME+
+                " where content like ? or title like ? ";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(searchQuery, new String[]{"%"+keyword+"%", "%"+keyword+"%"} );
+        ArrayList<Memo> memoList = new ArrayList<>();
+        if(cursor.moveToFirst()){
+            do {
+                int selectedId = Integer.parseInt(cursor.getString(0));
+                String selectedTitle = cursor.getString(1);
+                String selectedContent = cursor.getString(2);
+                Log.i("myDB", "do while : " + selectedTitle);
+                // db에서 읽어온 데이터를, 자바 클래스로 처리한다.
+                Memo memo = new Memo();
+                memo.setId(selectedId);
+                memo.setTitle(selectedTitle);
+                memo.setContent(selectedContent);
+
+                // 4. 위의 빈 어레이리스트에 하나씩 추가를 시킨다.
+                memoList.add(memo);
+
+            }while(cursor.moveToNext());
+        }
+        return memoList;
+    }
+
 
 }

@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.block.memo.adapter.RecyclerViewAdapter;
 import com.block.memo.data.DatabaseHandler;
@@ -22,6 +24,10 @@ public class MainActivity extends AppCompatActivity {
     RecyclerViewAdapter recyclerViewAdapter;
     ArrayList<Memo> memoArrayList;
 
+    EditText editSearch;
+    ImageView imgSearch;
+    ImageView imgClear;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
 
         btnAdd = findViewById(R.id.btnAdd);
         recyclerView = findViewById(R.id.recyclerView);
+        editSearch = findViewById(R.id.editSearch);
+        imgSearch = findViewById(R.id.imgSearch);
+        imgClear = findViewById(R.id.imgClear);
+
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
@@ -37,6 +47,27 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, AddMemo.class);
                 startActivity(i);
+            }
+        });
+        imgClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editSearch.setText("");
+
+                DatabaseHandler dh = new DatabaseHandler(MainActivity.this);
+                memoArrayList = dh.getAllMemo();
+                recyclerViewAdapter = new RecyclerViewAdapter(MainActivity.this, memoArrayList);
+                recyclerView.setAdapter(recyclerViewAdapter);
+            }
+        });
+        imgSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String keyword = editSearch.getText().toString().trim();
+                DatabaseHandler dh = new DatabaseHandler(MainActivity.this);
+                memoArrayList = dh.search(keyword);
+                recyclerViewAdapter = new RecyclerViewAdapter(MainActivity.this, memoArrayList);
+                recyclerView.setAdapter(recyclerViewAdapter);
             }
         });
 
