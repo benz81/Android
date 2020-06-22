@@ -11,15 +11,19 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.block.employee.model.Employee;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
     // 네트워크 통신 라이브러리인, volley 라이브러리를 멤버변수로 선언
     RequestQueue requestQueue;
     public static final String URL = "http://dummy.restapiexample.com/api/v1/employees";
+    ArrayList<Employee> employeeArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +57,33 @@ public class MainActivity extends AppCompatActivity {
                                 try {
                                     JSONArray dataArray = response.getJSONArray("data");
                                     Log.i("AAA", "key data 의 값은 : " + dataArray.toString());
+
+                                    // Data Parsing 데이터 파싱
+                                    for(int i = 0; i < dataArray.length(); i++){
+                                        JSONObject object = dataArray.getJSONObject(i);
+                                        // Log.i("AAA", "루프 "+i+"번째 : "+ object.toString());
+
+                                        // 직원의 이름을 24명 다 로그에 찍어보자.
+                                        String name = object.getString("employee_name");
+                                        Log.i("AAA", "루프 "+i+"번째 사람의 이름 : "+name);
+
+                                        // id, 샐러리, 나이를 가져와서, 로그에 찍는다.
+                                        int id = object.getInt("id");
+                                        Log.i("AAA", "루프 "+i+"번째 사람의 아이디 : "+id);
+
+                                        int salary = object.getInt("employee_salary");
+                                        Log.i("AAA", "루프 "+i+"번째 사람의 연봉 : "+ salary);
+
+                                        int age = object.getInt("employee_age");
+                                        Log.i("AAA", "루프 "+i+"번째 사람의 나이 : "+ age);
+
+                                        // 파싱한 데이터를, 클래스의 객체로 저장.
+                                        Employee employee = new Employee(id, name, salary, age);
+                                        employeeArrayList.add(employee);
+
+                                    }
+
+
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
