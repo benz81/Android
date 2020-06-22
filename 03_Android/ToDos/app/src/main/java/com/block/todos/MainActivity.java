@@ -1,7 +1,10 @@
 package com.block.todos;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -11,6 +14,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.block.todos.adapter.RecyclerViewAdapter;
 import com.block.todos.model.Todo;
 
 import org.json.JSONArray;
@@ -25,10 +29,17 @@ public class MainActivity extends AppCompatActivity {
     public static final String URL = "https://jsonplaceholder.typicode.com/todos";
     ArrayList<Todo> todoArrayList = new ArrayList<>();
 
+    RecyclerView recyclerView;
+    RecyclerViewAdapter recyclerViewAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
         requestQueue = Volley.newRequestQueue(MainActivity.this);
 
@@ -58,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
                                 e.printStackTrace();
                             }
                         }
+                        recyclerViewAdapter = new RecyclerViewAdapter(MainActivity.this, todoArrayList);
+                        recyclerView.setAdapter(recyclerViewAdapter);
 
                     }
                 },
