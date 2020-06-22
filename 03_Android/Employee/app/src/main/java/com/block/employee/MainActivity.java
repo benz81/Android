@@ -1,6 +1,8 @@
 package com.block.employee;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +13,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.block.employee.adapter.RecyclerViewAdapter;
 import com.block.employee.model.Employee;
 
 import org.json.JSONArray;
@@ -25,10 +28,17 @@ public class MainActivity extends AppCompatActivity {
     public static final String URL = "http://dummy.restapiexample.com/api/v1/employees";
     ArrayList<Employee> employeeArrayList = new ArrayList<>();
 
+    RecyclerView recyclerView;
+    RecyclerViewAdapter recyclerViewAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        recyclerView = findViewById(R.id.recycleView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
         // 1. 발리의 리퀘스트큐 객체를 가져온다.
         requestQueue = Volley.newRequestQueue(MainActivity.this);
@@ -46,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
+                                Log.i("AAA", "wwwwwwwwwwwwwwwwwwwww");
                                 Log.i("AAA", "result : "+response.toString());
                                 // status 의 값은 뭐냐??  status에 무슨값이 담겨있는지 로그확인.
                                 try {
@@ -83,6 +94,11 @@ public class MainActivity extends AppCompatActivity {
 
                                     }
 
+                                    // for 루프 끝나야, 모든 데이터가 다 어레이리스트에 들어있다.
+                                    // 이렇게 어레이리스트에 데이터가 다 들어있는 후에,
+                                    // 리사이클러뷰를 표시.
+                                    recyclerViewAdapter = new RecyclerViewAdapter(MainActivity.this, employeeArrayList);
+                                    recyclerView.setAdapter(recyclerViewAdapter);
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -96,6 +112,8 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
         requestQueue.add(jsonObjectRequest);
-
+        // 네트워크 갔다와서, 어레이리스트에 데이터가 쌓여있는 상태 X  => 주의
+        // 요 아래에다가 어댑터 연결하는 코드 넣으면 절대 안됩니다.
+        Log.i("AAA", "qqqqqqqqqqqqqqqqqqqqq");
     }
 }
