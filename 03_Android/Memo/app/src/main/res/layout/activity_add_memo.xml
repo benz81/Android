@@ -15,6 +15,7 @@
         android:layout_marginEnd="139dp"
         android:text="메모 생성"
         android:textSize="34sp"
+        android:fontFamily="@font/nanumba"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
