@@ -101,4 +101,4 @@
 
 55. 앱실습 : 네크워크 JSON Parsing - https://docs.google.com/presentation/d/1NRO7QJYg2Bow1Sjxo1XNFwhqJ99UjZaI2nC9s5VlhB8/edit?usp=sharing
 
-56. 앱실습 : 커스텀 다이얼로그 및 액션바 메뉴
+56. 앱실습 : 커스텀 다이얼로그 및 액션바 메뉴- https://docs.google.com/presentation/d/1H2HB7r8qcD10aXjsJE-wMWzQIu43wAZTNWYua2G39lI/edit?usp=sharing
