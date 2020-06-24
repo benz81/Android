@@ -15,6 +15,7 @@ import com.block.customalert.model.Post;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -131,7 +132,8 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.menu_add) {
             Intent i = new Intent(MainActivity.this, AddPosting.class);
-            startActivity(i);
+            //startActivity(i);
+            startActivityForResult(i, 0);
             return true;
         }
 
@@ -173,6 +175,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 0 && resultCode == RESULT_OK){
+            String title = data.getStringExtra("title");
+            String body = data.getStringExtra("body");
+
+            Post post = new Post(1, 1, title, body);
+
+            postArrayList.add(post);
+
+            recyclerViewAdapter = new RecyclerViewAdapter(MainActivity.this, postArrayList);
+            recyclerView.setAdapter(recyclerViewAdapter);
+
+        }
+
+    }
 }
 
 

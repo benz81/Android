@@ -7,8 +7,16 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class AddPosting extends AppCompatActivity {
+
+    EditText editTitle;
+    EditText editBody;
+    Button btnSave;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +25,30 @@ public class AddPosting extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        editTitle = findViewById(R.id.editTitle);
+        editBody = findViewById(R.id.editBody);
+        btnSave = findViewById(R.id.btnSave);
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String title = editTitle.getText().toString().trim();
+                String body = editBody.getText().toString().trim();
+                if(title.isEmpty() || body.isEmpty()){
+                    Toast.makeText(AddPosting.this,
+                            "데이터를 입력하세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Intent i = getIntent();
+                i.putExtra("title", title);
+                i.putExtra("body", body);
+                setResult(RESULT_OK, i);
+
+                finish();
+            }
+        });
+
 
     }
 
