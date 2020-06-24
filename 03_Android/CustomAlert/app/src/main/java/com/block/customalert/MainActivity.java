@@ -1,6 +1,7 @@
 package com.block.customalert;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.android.volley.Request;
@@ -59,10 +60,10 @@ public class MainActivity extends AppCompatActivity {
         FloatingActionButton fab = findViewById(R.id.fab);
         recyclerView = findViewById(R.id.recycylerView);
         recyclerView.setHasFixedSize(true);
-        // recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
         // 그리드레이아웃 매니저를 이용하면, 하나의 행에, 여러개의 셀을 표시할 수 있다.
-        recyclerView.setLayoutManager(
-                new GridLayoutManager(MainActivity.this, 3));
+//        recyclerView.setLayoutManager(
+//                new GridLayoutManager(MainActivity.this, 3));
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,7 +129,9 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.menu_add) {
+            Intent i = new Intent(MainActivity.this, AddPosting.class);
+            startActivity(i);
             return true;
         }
 
