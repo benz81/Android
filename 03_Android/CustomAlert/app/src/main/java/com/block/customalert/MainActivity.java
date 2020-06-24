@@ -8,12 +8,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.block.customalert.adapter.RecyclerViewAdapter;
 import com.block.customalert.model.Post;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.View;
@@ -34,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<Post> postArrayList = new ArrayList<>();
 
+    RecyclerView recyclerView;
+    RecyclerViewAdapter recyclerViewAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +48,10 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = findViewById(R.id.fab);
+        recyclerView = findViewById(R.id.recycylerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,6 +86,10 @@ public class MainActivity extends AppCompatActivity {
                                 e.printStackTrace();
                             }
                         }
+
+                        // 리스트에 데이터가 모두 다 들어간 후,
+                        recyclerViewAdapter = new RecyclerViewAdapter(MainActivity.this, postArrayList);
+                        recyclerView.setAdapter(recyclerViewAdapter);
                     }
                 },
                 new Response.ErrorListener() {
