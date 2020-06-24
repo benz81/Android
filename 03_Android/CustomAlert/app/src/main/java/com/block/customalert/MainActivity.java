@@ -1,5 +1,6 @@
 package com.block.customalert;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import com.android.volley.Request;
@@ -13,8 +14,10 @@ import com.block.customalert.model.Post;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,6 +26,8 @@ import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerViewAdapter recyclerViewAdapter;
 
+    EditText editTitle;
+    EditText editBody;
+    private AlertDialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,13 +59,15 @@ public class MainActivity extends AppCompatActivity {
         FloatingActionButton fab = findViewById(R.id.fab);
         recyclerView = findViewById(R.id.recycylerView);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        // recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        // 그리드레이아웃 매니저를 이용하면, 하나의 행에, 여러개의 셀을 표시할 수 있다.
+        recyclerView.setLayoutManager(
+                new GridLayoutManager(MainActivity.this, 3));
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                createPopupDialog();
             }
         });
 
@@ -123,4 +134,46 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void createPopupDialog(){
+        AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+        View alertView = getLayoutInflater().inflate(R.layout.add_alert,null);
+
+        editTitle = alertView.findViewById(R.id.editTitle);
+        editBody = alertView.findViewById(R.id.editBody);
+
+        alert.setView(alertView);
+        alert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String title = editTitle.getText().toString().trim();
+                String body = editBody.getText().toString().trim();
+
+                if(title.isEmpty() || body.isEmpty()){
+                    Toast.makeText(MainActivity.this,
+                            "글자를 꼭 입력하셔야 합니다.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                Post post = new Post(1, 1, title, body);
+                postArrayList.add(post);
+                recyclerViewAdapter = new RecyclerViewAdapter(MainActivity.this, postArrayList);
+                recyclerView.setAdapter(recyclerViewAdapter);
+            }
+        });
+        alert.setNegativeButton("NO", null);
+
+        alert.setCancelable(false);
+
+        dialog = alert.create();
+        dialog.show();
+
+    }
+
 }
+
+
+
+
+
+
