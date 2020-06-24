@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.block.customalert.model.Post;
+
 public class AddPosting extends AppCompatActivity {
 
     EditText editTitle;
@@ -41,8 +43,8 @@ public class AddPosting extends AppCompatActivity {
                     return;
                 }
                 Intent i = getIntent();
-                i.putExtra("title", title);
-                i.putExtra("body", body);
+                Post post = new Post(0, 0, title, body);
+                i.putExtra("PostClass", post);
                 setResult(RESULT_OK, i);
 
                 finish();

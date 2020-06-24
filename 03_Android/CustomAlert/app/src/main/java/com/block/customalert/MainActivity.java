@@ -180,10 +180,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == 0 && resultCode == RESULT_OK){
-            String title = data.getStringExtra("title");
-            String body = data.getStringExtra("body");
-
-            Post post = new Post(1, 1, title, body);
+            Post post = (Post) data.getSerializableExtra("PostClass");
 
             postArrayList.add(post);
 

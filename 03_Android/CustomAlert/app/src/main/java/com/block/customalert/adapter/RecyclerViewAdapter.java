@@ -57,6 +57,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             txtTitle = itemView.findViewById(R.id.txtTitle);
             txtBody = itemView.findViewById(R.id.txtBody);
             imgDelete = itemView.findViewById(R.id.imgDelete);
+            imgDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int index = getAdapterPosition();
+                    postArrayList.remove(index);
+                    notifyDataSetChanged();
+                }
+            });
         }
     }
 }

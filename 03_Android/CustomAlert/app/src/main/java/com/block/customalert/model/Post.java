@@ -1,6 +1,8 @@
 package com.block.customalert.model;
 
-public class Post {
+import java.io.Serializable;
+
+public class Post implements Serializable {
     int userId;
     int id;
     String title;

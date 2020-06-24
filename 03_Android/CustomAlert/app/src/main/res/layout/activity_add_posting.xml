@@ -40,7 +40,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="30dp"
         android:ems="10"
-        android:hint="제목 입력"
+        android:hint="내용 입력"
         android:inputType="textPersonName" />
 
     <Button
