@@ -106,3 +106,5 @@
 57. AsyncTask : https://docs.google.com/presentation/d/1IuyT1Ro_ttGMOONXE5WoqLXLzxLuhImpGYPBS3Du29w/edit?usp=sharing 
 
 58. 리사이클러 뷰에 이미지 처리 : https://docs.google.com/presentation/d/1iZg-czwOLbAuztrNx80AB-fuhB99zAbv1TB2PAl6T34/edit?usp=sharing
+
+59. 앱실습 youtube api : https://docs.google.com/presentation/d/1y7ovTm8xHTe3CL5CUNb2IWDbV1bmZezWxwkMTz7Y_qE/edit?usp=sharing
