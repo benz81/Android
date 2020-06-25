@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int statusInfo = getNetworkStatus(MainActivity.this);
+                int statusInfo = getNetworkStatus2(MainActivity.this);
                 // 1 은 wifi
                 if(statusInfo == 1){
                     img.setImageResource(R.drawable.wireless);
