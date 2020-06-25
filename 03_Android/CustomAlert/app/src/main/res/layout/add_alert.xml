@@ -8,6 +8,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/nanump"
         android:paddingLeft="20dp"
         android:text="포스트 생성"
         android:textSize="30sp" />
@@ -18,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:ems="10"
+        android:fontFamily="@font/nanump"
         android:hint="제목 입력"
         android:inputType="textPersonName" />
 
@@ -27,6 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:ems="10"
+        android:fontFamily="@font/nanump"
         android:hint="내용 입력"
         android:inputType="textPersonName" />
 </LinearLayout>
