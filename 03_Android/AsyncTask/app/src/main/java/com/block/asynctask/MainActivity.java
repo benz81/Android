@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         // 5. 생성자
         public DownloadImageTask(Context context) {
             this.context = context;
-            progressBar = new ProgressBar(context);
+            progressBar = findViewById(R.id.progressBar);
         }
         // 2. 이 메소드 만들어준다.
         @Override
