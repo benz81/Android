@@ -79,6 +79,20 @@ public class MainActivity extends AppCompatActivity {
                     return 2;
                 }
             }
+        } else {
+            android.net.NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+            if(networkInfo != null){
+                switch (networkInfo.getType()){
+                    case ConnectivityManager.TYPE_WIFI:
+                        return 1;
+                    case ConnectivityManager.TYPE_MOBILE:
+                        return 0;
+                    default:
+                        return 3;
+                }
+            }else{
+                return 1000;
+            }
         }
         return 1000;
     }
