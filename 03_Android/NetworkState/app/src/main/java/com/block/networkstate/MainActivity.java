@@ -72,11 +72,11 @@ public class MainActivity extends AppCompatActivity {
             NetworkCapabilities capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.getActiveNetwork());
             if (capabilities != null) {
                 if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
-                    return 3;
+                    return 0;
                 } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
                     return 1;
-                }  else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)){
-                    return 2;
+                }  else{
+                    return 3;
                 }
             }
         } else {
