@@ -104,3 +104,5 @@
 56. 앱실습 : 커스텀 다이얼로그 및 액션바 메뉴- https://docs.google.com/presentation/d/1H2HB7r8qcD10aXjsJE-wMWzQIu43wAZTNWYua2G39lI/edit?usp=sharing
 
 57. AsyncTask : https://docs.google.com/presentation/d/1IuyT1Ro_ttGMOONXE5WoqLXLzxLuhImpGYPBS3Du29w/edit?usp=sharing 
+
+58. 리사이클러 뷰에 이미지 처리 : https://docs.google.com/presentation/d/1iZg-czwOLbAuztrNx80AB-fuhB99zAbv1TB2PAl6T34/edit?usp=sharing
