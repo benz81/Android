@@ -13,6 +13,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.model.GlideUrl;
+import com.bumptech.glide.load.model.LazyHeaders;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -34,9 +38,15 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Android_robot.svg/2000px-Android_robot.svg.png";
-                DownloadImageTask downloadImageTask = new DownloadImageTask(MainActivity.this);
-                downloadImageTask.execute(url);
+                String url = "https://via.placeholder.com/150/771796";
+
+                GlideUrl glideUrl = new GlideUrl(url,
+                        new LazyHeaders.Builder().addHeader("User-Agent","Your-User-Agent").build());
+                // Glide 로 받아오기.
+                Glide.with(MainActivity.this).load(glideUrl).into(img);
+
+//                DownloadImageTask downloadImageTask = new DownloadImageTask(MainActivity.this);
+//                downloadImageTask.execute(url);
             }
         });
 
