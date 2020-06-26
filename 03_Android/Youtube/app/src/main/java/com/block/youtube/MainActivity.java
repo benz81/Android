@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
                             JSONArray items = response.getJSONArray("items");
                             for(int i = 0; i < items.length(); i++){
                                 JSONObject jsonObject = items.getJSONObject(i);
+                                JSONObject id = jsonObject.getJSONObject("id");
+                                String videoId = id.getString("videoId");
                                 JSONObject snippet = jsonObject.getJSONObject("snippet");
                                 String title = snippet.getString("title");
                                 String desc = snippet.getString("description");
@@ -48,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                                 JSONObject def = thumbnails.getJSONObject("default");
                                 String url = def.getString("url");
 
-                                Log.i("AAA", title+", "+desc+", "+url);
+                                Log.i("AAA", videoId +","+title+", "+desc+", "+url);
                             }
 
                         } catch (JSONException e) {
