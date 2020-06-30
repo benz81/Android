@@ -18,7 +18,7 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
-    String youtubeUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyBbbw95I-YTfS09K3rNpff6rSGMFETyOhQ&maxResults=20&order=date&type=video&type=video&q=벤츠";
+    String youtubeUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyAleEFgJqgWcfAI5Bsh2z96MjGCT7HmRZU&maxResults=20&order=date&type=video&type=video&q=벤츠";
     RequestQueue requestQueue;
 
     @Override

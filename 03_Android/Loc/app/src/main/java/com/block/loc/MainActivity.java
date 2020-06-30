@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             @Override
             public void onLocationChanged(Location location) {
                 Log.i("AAA", location.toString());
+                Log.i("AAA", ""+location.getLatitude()+", "+location.getLongitude());
             }
 
             @Override
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 0, locationListener);
     }
 
     @Override
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
                 return;
             }
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 0, locationListener);
         }
     }
 }

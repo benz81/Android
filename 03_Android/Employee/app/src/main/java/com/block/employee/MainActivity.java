@@ -7,11 +7,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.block.employee.adapter.RecyclerViewAdapter;
 import com.block.employee.model.Employee;
@@ -21,6 +23,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     // 네트워크 통신 라이브러리인, volley 라이브러리를 멤버변수로 선언
@@ -42,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
         // 1. 발리의 리퀘스트큐 객체를 가져온다.
         requestQueue = Volley.newRequestQueue(MainActivity.this);
-        // 2. 제이슨리퀘스트 객체 생성 : 서버로부터 응답 받았을때 어떻게 처리할지를 코딩.
+
+            // 2. 제이슨리퀘스트 객체 생성 : 서버로부터 응답 받았을때 어떻게 처리할지를 코딩.
         JsonObjectRequest jsonObjectRequest =
                 // http프토콜의 get 메소드설정,
                 // 요청할 URL,
