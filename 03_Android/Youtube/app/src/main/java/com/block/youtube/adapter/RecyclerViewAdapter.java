@@ -42,7 +42,7 @@ public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapt
         holder.txtTitle.setText(title);
         holder.txtDesc.setText(desc);
         // 이미지는 글라이드에서 처리한다.
-        
+
     }
 
     @Override
