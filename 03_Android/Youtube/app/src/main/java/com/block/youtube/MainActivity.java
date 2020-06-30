@@ -27,7 +27,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    String youtubeUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyAleEFgJqgWcfAI5Bsh2z96MjGCT7HmRZU&maxResults=20&order=date&type=video&type=video";
+    String youtubeUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyAleEFgJqgWcfAI5Bsh2z96MjGCT7HmRZU&maxResults=20&order=date&type=video&type=video&pageToken=CBQQAA";
     RequestQueue requestQueue;
 
     RecyclerView recyclerView;
