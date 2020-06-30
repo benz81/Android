@@ -108,3 +108,5 @@
 58. 리사이클러 뷰에 이미지 처리 : https://docs.google.com/presentation/d/1iZg-czwOLbAuztrNx80AB-fuhB99zAbv1TB2PAl6T34/edit?usp=sharing
 
 59. 앱실습 youtube api : https://docs.google.com/presentation/d/1y7ovTm8xHTe3CL5CUNb2IWDbV1bmZezWxwkMTz7Y_qE/edit?usp=sharing
+
+60. 앱실습, 리스트 페이징 : https://docs.google.com/presentation/d/1juyTN904LazzrDfGB3Y-KZrhjg18FWbuZTUepxlXtQ0/edit?usp=sharing
