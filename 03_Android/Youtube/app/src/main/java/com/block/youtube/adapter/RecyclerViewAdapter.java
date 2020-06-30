@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.block.youtube.R;
 import com.block.youtube.model.Video;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -41,13 +42,13 @@ public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapt
 
         holder.txtTitle.setText(title);
         holder.txtDesc.setText(desc);
-        // 이미지는 글라이드에서 처리한다.
-
+        // 이미지는 글라이드가 처리한다.
+        Glide.with(context).load(imgUrl).into(holder.img);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return videoArrayList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
