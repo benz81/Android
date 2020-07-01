@@ -28,7 +28,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    String youtubeUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyBUzLv8CSHKqoBZaEBDBqlCvvWD1Tpl_BM&maxResults=7&order=date&type=video&type=video";
+    String youtubeUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&key=[자신의 API KEY]&maxResults=7&order=date&type=video&type=video&regionCode=KR";
     RequestQueue requestQueue;
 
     RecyclerView recyclerView;
@@ -37,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
 
     EditText editSearch;
     ImageView imgSearch;
+
+    String nextPageToken;
+    String pageToken = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,17 +62,23 @@ public class MainActivity extends AppCompatActivity {
 
                 int lastPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
                 int totalCount = recyclerView.getAdapter().getItemCount();
-//                Log.i("AAA", "now "+lastPosition+" "+totalCount);
+
                 if(lastPosition+1 == totalCount){
                     //아이템 추가 ! 입맛에 맞게 설정하시면됩니다.
-                    Log.i("AAA", "now");
-                    addNetworkData(youtubeUrl);
-//                    recyclerViewAdapter.notifyDataSetChanged();
+                    Log.i("AAA", "맨 마지막 도착");
 
+                    if(nextPageToken.compareTo(pageToken) != 0){
+                        pageToken = nextPageToken;
+                        String url = youtubeUrl+"&pageToken="+pageToken;
+                        // 이 url로 네트워크 데이터 요청.
+                        Log.i("AAA", url);
+                        getNetworkData(url);
+                    }
                 }
 
             }
         });
+
 
         editSearch = findViewById(R.id.editSearch);
         imgSearch = findViewById(R.id.imgSearch);
@@ -109,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         Log.i("AAA", response.toString());
                         try {
+                            nextPageToken = response.getString("nextPageToken");
                             JSONArray items = response.getJSONArray("items");
                             for(int i = 0; i < items.length(); i++){
                                 JSONObject jsonObject = items.getJSONObject(i);
