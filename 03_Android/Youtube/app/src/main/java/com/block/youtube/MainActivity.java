@@ -1,5 +1,6 @@
 package com.block.youtube;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    String youtubeUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyAleEFgJqgWcfAI5Bsh2z96MjGCT7HmRZU&maxResults=20&order=date&type=video&type=video&pageToken=CBQQAA";
+    String youtubeUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyBUzLv8CSHKqoBZaEBDBqlCvvWD1Tpl_BM&maxResults=7&order=date&type=video&type=video";
     RequestQueue requestQueue;
 
     RecyclerView recyclerView;
@@ -45,6 +46,30 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                int lastPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
+                int totalCount = recyclerView.getAdapter().getItemCount();
+//                Log.i("AAA", "now "+lastPosition+" "+totalCount);
+                if(lastPosition+1 == totalCount){
+                    //아이템 추가 ! 입맛에 맞게 설정하시면됩니다.
+                    Log.i("AAA", "now");
+                    addNetworkData(youtubeUrl);
+//                    recyclerViewAdapter.notifyDataSetChanged();
+
+                }
+
+            }
+        });
 
         editSearch = findViewById(R.id.editSearch);
         imgSearch = findViewById(R.id.imgSearch);
@@ -103,6 +128,49 @@ public class MainActivity extends AppCompatActivity {
                             recyclerViewAdapter = new RecyclerViewAdapter(
                                     MainActivity.this,videoArrayList);
                             recyclerView.setAdapter(recyclerViewAdapter);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        );
+        requestQueue.add(jsonObjectRequest);
+    }
+
+    public void addNetworkData(String url){
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.i("AAA", response.toString());
+                        try {
+                            JSONArray items = response.getJSONArray("items");
+                            for(int i = 0; i < items.length(); i++){
+                                JSONObject jsonObject = items.getJSONObject(i);
+                                JSONObject id = jsonObject.getJSONObject("id");
+                                String videoId = id.getString("videoId");
+                                JSONObject snippet = jsonObject.getJSONObject("snippet");
+                                String title = snippet.getString("title");
+                                String desc = snippet.getString("description");
+                                JSONObject thumbnails = snippet.getJSONObject("thumbnails");
+                                JSONObject def = thumbnails.getJSONObject("medium");
+                                String url = def.getString("url");
+
+                                Video video = new Video(title, desc, url, videoId);
+                                videoArrayList.add(video);
+//                                Log.i("AAA", videoId +","+title+", "+desc+", "+url);
+                            }
+                            recyclerViewAdapter.notifyDataSetChanged();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
