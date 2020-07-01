@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             // translatedText 항목을 뽑아 올수 있습니다.
-                            
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
