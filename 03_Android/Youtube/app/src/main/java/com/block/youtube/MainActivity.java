@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                         String url = youtubeUrl+"&pageToken="+pageToken;
                         // 이 url로 네트워크 데이터 요청.
                         Log.i("AAA", url);
-                        getNetworkData(url);
+                        addNetworkData(url);
                     }
                 }
 
@@ -154,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(jsonObjectRequest);
     }
 
+
     public void addNetworkData(String url){
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
@@ -164,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         Log.i("AAA", response.toString());
                         try {
+                            nextPageToken = response.getString("nextPageToken");
                             JSONArray items = response.getJSONArray("items");
                             for(int i = 0; i < items.length(); i++){
                                 JSONObject jsonObject = items.getJSONObject(i);
@@ -180,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
                                 videoArrayList.add(video);
 //                                Log.i("AAA", videoId +","+title+", "+desc+", "+url);
                             }
+
                             recyclerViewAdapter.notifyDataSetChanged();
 
                         } catch (JSONException e) {
@@ -196,5 +199,4 @@ public class MainActivity extends AppCompatActivity {
         );
         requestQueue.add(jsonObjectRequest);
     }
-
 }
