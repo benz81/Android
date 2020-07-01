@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
     String nextPageToken;
     String pageToken = "";
 
+    String searhUrl = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +71,13 @@ public class MainActivity extends AppCompatActivity {
 
                     if(nextPageToken.compareTo(pageToken) != 0){
                         pageToken = nextPageToken;
-                        String url = youtubeUrl+"&pageToken="+pageToken;
+
+                        String url = "";
+                        if(searhUrl.isEmpty()){
+                            url = youtubeUrl+"&pageToken="+pageToken;
+                        }else{
+                            url = searhUrl+"&pageToken="+pageToken;
+                        }
                         // 이 url로 네트워크 데이터 요청.
                         Log.i("AAA", url);
                         addNetworkData(url);
@@ -86,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String word = editSearch.getText().toString().trim();
-                String searhUrl = "";
+
                 if(word.isEmpty()){
                     searhUrl = youtubeUrl;
                 }else{
