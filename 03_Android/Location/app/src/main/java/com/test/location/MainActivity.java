@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         }
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
                 5000,   // 밀리세컨드,  1000 : 1초
-                10,   // 미터   10m
+                0,   // 미터   10m
                 locationListener);
     }
 
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                }
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
                     5000,   // 밀리세컨드,  1000 : 1초
-                    10,   // 미터   10m
+                    0,   // 미터   10m
                     locationListener);
         }
     }
