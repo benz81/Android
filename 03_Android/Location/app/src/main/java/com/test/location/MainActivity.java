@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private String clientId = "ovogog09cv";
     private String clientSecret = "p5F9O0yxRCQT2ZDQ2333rExgXJD7dFsz1vXFNOWr";
 
-    private String baseUrl = "https://naveropenapi.apigw.ntruss.com/map-static/v2/raster?w=300&h=300&level=16";
+    private String baseUrl = "https://naveropenapi.apigw.ntruss.com/map-static/v2/raster?w=612&h=1024&level=17";
 
     private LocationManager locationManager;
     private LocationListener locationListener;
