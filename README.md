@@ -112,3 +112,5 @@
 60. 앱실습, 리스트 페이징 : https://docs.google.com/presentation/d/1juyTN904LazzrDfGB3Y-KZrhjg18FWbuZTUepxlXtQ0/edit?usp=sharing
 
 61. 네이버 api : https://docs.google.com/presentation/d/1z6tHG9oi_DWhNGjQ-bx6MFWchPvlopSa1J-ubgBU63g/edit?usp=sharing
+
+62. 내 위치기반 상점 검색 : https://docs.google.com/presentation/d/1-6sKk0eICCjfmejyLGe6Kw_bfOP9l17BEUyz48vmE74/edit?usp=sharing
