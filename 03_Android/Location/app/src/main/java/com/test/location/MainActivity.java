@@ -11,17 +11,34 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.model.GlideUrl;
+import com.bumptech.glide.load.model.LazyHeaders;
 
 public class MainActivity extends AppCompatActivity {
+
+    private String clientId = "ovogog09cv";
+    private String clientSecret = "p5F9O0yxRCQT2ZDQ2333rExgXJD7dFsz1vXFNOWr";
+
+    private String baseUrl = "https://naveropenapi.apigw.ntruss.com/map-static/v2/raster?w=300&h=300&level=16";
 
     private LocationManager locationManager;
     private LocationListener locationListener;
 
+    TextView txtGps;
+    ImageView imgMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        txtGps = findViewById(R.id.txtGps);
+        imgMap = findViewById(R.id.imgMap);
+
         // 안드로이드의 위치를 관리하는 객체가 LocationManager다.
         // 따라서 안드로이드 시스템에, 로케이션 서비스를 이앱이 사용하겠다고,
         // 로케이션 서비스를 요청하여, 로케이션매니져 변수에 저장해 줘야 한다.
@@ -32,6 +49,19 @@ public class MainActivity extends AppCompatActivity {
                 // 안드로이드가, 폰의 위치 바뀔때 마다, 이 메소드를 호출해줍니다.
                 // 폰의 위치가 바뀔때마다 해주고 싶은일을 여기에 작성.
                 Log.i("AAA", location.toString());
+                double lat = location.getLatitude();
+                double lng = location.getLongitude();
+
+                String url = baseUrl + "&center="+lng+","+lat;
+
+                GlideUrl glideUrl = new GlideUrl(url,
+                        new LazyHeaders.Builder().addHeader("X-NCP-APIGW-API-KEY-ID",clientId)
+                .addHeader("X-NCP-APIGW-API-KEY", clientSecret).build());
+
+                Glide.with(MainActivity.this).load(glideUrl).into(imgMap);
+
+                txtGps.setText("Center : "+lat+","+lng);
+
             }
         };
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
