@@ -87,8 +87,8 @@ public class MainActivity extends AppCompatActivity {
                                 JSONObject item = results.getJSONObject(i);
                                 JSONObject geometry = item.getJSONObject("geometry");
                                 JSONObject location = geometry.getJSONObject("location");
-                                double lat = location.getDouble("lat");
-                                double lng = location.getDouble("lng");
+                                double storeLat = location.getDouble("lat");
+                                double storeLng = location.getDouble("lng");
                             }
 
                         } catch (JSONException e) {
