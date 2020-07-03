@@ -114,3 +114,5 @@
 61. 네이버 api : https://docs.google.com/presentation/d/1z6tHG9oi_DWhNGjQ-bx6MFWchPvlopSa1J-ubgBU63g/edit?usp=sharing
 
 62. 내 위치기반 상점 검색 : https://docs.google.com/presentation/d/1-6sKk0eICCjfmejyLGe6Kw_bfOP9l17BEUyz48vmE74/edit?usp=sharing
+
+63. Git / Github.com 사용법 : https://docs.google.com/presentation/d/1u-Sj4st6Kco0_6AVvWqwqNVoR8bRcOP3luHGKhwXgKA/edit?usp=sharing
