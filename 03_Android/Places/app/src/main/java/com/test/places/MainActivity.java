@@ -13,6 +13,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -48,12 +49,15 @@ public class MainActivity extends AppCompatActivity {
     // 위치가 변경될 때마다, 처리해줄 리스너 멤버변수로 선언.
     LocationListener locationListener;
 
-    String nextPageToken;
+    String nextPageToken = "";
+    String pageToken = "";
 
     double lat;
     double lng;
 
     boolean isFirst = true;
+
+    String keyword = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +66,15 @@ public class MainActivity extends AppCompatActivity {
 
         editSearch = findViewById(R.id.editSearch);
         btnSearch = findViewById(R.id.btnSearch);
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                keyword = editSearch.getText().toString().trim();
+                storeArrayList.clear();
+                getNetworkData(lat, lng);
+
+            }
+        });
         recyclerView = findViewById(R.id.recyclerView);
 
         requestQueue = Volley.newRequestQueue(MainActivity.this);
@@ -83,7 +96,12 @@ public class MainActivity extends AppCompatActivity {
 
                 if(lastPosition+1 == totalCount) {
                     //아이템 추가 ! 입맛에 맞게 설정하시면됩니다.
+                    // nextPageToken , pageToken 이 2개를 멤버변수로 셋팅.
+                    if(!nextPageToken.isEmpty() && !nextPageToken.equals(pageToken)){
+                        pageToken = nextPageToken;
 
+                        addNetworkData();
+                    }
                 }
 
             }
@@ -100,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // 네트워크로 구글 플레이스 api 호출.
                 if(isFirst){
+                    Log.i("AAA", "맨 처음 한번만 호출됨.");
                     isFirst = false;
                     getNetworkData(lat, lng);
                 }
@@ -119,9 +138,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    void getNetworkData(double lat, double lng) {
-
-        String url = baseUrl+ key +"&location="+lat+","+lng;
+    private void addNetworkData() {
+        String url = "";
+        if(keyword.isEmpty()){
+            url = baseUrl+ key +"&location="+lat+","+lng+"&pagetoken="+pageToken;
+        }else{
+            url = baseUrl+ key +"&location="+lat+","+lng+"&keyword="+keyword+"&pagetoken="+pageToken;
+        }
 
         StringRequest request = new StringRequest(
                 Request.Method.GET,
@@ -132,7 +155,62 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             // Exception : 실행도중에 문제가 발생할 경우, catch 에서 처리할 수 있도록
                             JSONObject jsonObject = new JSONObject(response);
-                            nextPageToken = jsonObject.getString("next_page_token");
+                            if(!jsonObject.isNull("next_page_token")) {
+                                nextPageToken = jsonObject.getString("next_page_token");
+                            }
+                            JSONArray results = jsonObject.getJSONArray("results");
+                            for(int i = 0; i < results.length(); i++){
+                                JSONObject item = results.getJSONObject(i);
+                                JSONObject geometry = item.getJSONObject("geometry");
+                                JSONObject location = geometry.getJSONObject("location");
+                                double storeLat = location.getDouble("lat");
+                                double storeLng = location.getDouble("lng");
+                                String name = item.getString("name");
+                                String addr = item.getString("vicinity");
+                                Store store = new Store(name, addr, storeLat, storeLng);
+                                storeArrayList.add(store);
+                            }
+
+                            adapter.notifyDataSetChanged();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.i("AAA", e.toString());
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        );
+        requestQueue.add(request);
+    }
+
+    void getNetworkData(double lat, double lng) {
+        String url = "";
+        if(keyword.isEmpty()){
+            url = baseUrl+ key +"&location="+lat+","+lng;
+        }else{
+            url = baseUrl+ key +"&location="+lat+","+lng+"&keyword="+keyword;
+        }
+
+
+        StringRequest request = new StringRequest(
+                Request.Method.GET,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            // Exception : 실행도중에 문제가 발생할 경우, catch 에서 처리할 수 있도록
+                            JSONObject jsonObject = new JSONObject(response);
+                            if(!jsonObject.isNull("next_page_token")) {
+                                nextPageToken = jsonObject.getString("next_page_token");
+                            }
                             JSONArray results = jsonObject.getJSONArray("results");
                             for(int i = 0; i < results.length(); i++){
                                 JSONObject item = results.getJSONObject(i);
