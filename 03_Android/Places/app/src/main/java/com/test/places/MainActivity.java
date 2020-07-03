@@ -21,6 +21,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.test.places.adapter.RecyclerViewAdapter;
 import com.test.places.model.Store;
 
@@ -49,6 +50,11 @@ public class MainActivity extends AppCompatActivity {
 
     String nextPageToken;
 
+    double lat;
+    double lng;
+
+    boolean isFirst = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,18 +63,46 @@ public class MainActivity extends AppCompatActivity {
         editSearch = findViewById(R.id.editSearch);
         btnSearch = findViewById(R.id.btnSearch);
         recyclerView = findViewById(R.id.recyclerView);
+
+        requestQueue = Volley.newRequestQueue(MainActivity.this);
+
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                int lastPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
+                int totalCount = recyclerView.getAdapter().getItemCount();
+
+                if(lastPosition+1 == totalCount) {
+                    //아이템 추가 ! 입맛에 맞게 설정하시면됩니다.
+
+                }
+
+            }
+        });
+
         // 위치기반 서비스를 위해서, 안드로이드 시스템에 위치기반서비스 요청.
         locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(@NonNull Location location) {
                 Log.i("AAA", location.toString());
-                double lat = location.getLatitude();
-                double lng = location.getLongitude();
+                lat = location.getLatitude();
+                lng = location.getLongitude();
+
                 // 네트워크로 구글 플레이스 api 호출.
-                getNetworkData(lat, lng);
+                if(isFirst){
+                    isFirst = false;
+                    getNetworkData(lat, lng);
+                }
             }
         };
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -82,12 +116,16 @@ public class MainActivity extends AppCompatActivity {
         }
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
                 5000, 0, locationListener);
+
     }
 
     void getNetworkData(double lat, double lng) {
+
+        String url = baseUrl+ key +"&location="+lat+","+lng;
+
         StringRequest request = new StringRequest(
                 Request.Method.GET,
-                baseUrl + key,
+                url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -113,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
 
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            Log.i("AAA", e.toString());
                         }
 
                     }
@@ -124,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
+        requestQueue.add(request);
     }
 
     @Override
