@@ -116,3 +116,7 @@
 62. 내 위치기반 상점 검색 : https://docs.google.com/presentation/d/1-6sKk0eICCjfmejyLGe6Kw_bfOP9l17BEUyz48vmE74/edit?usp=sharing
 
 63. Git / Github.com 사용법 : https://docs.google.com/presentation/d/1u-Sj4st6Kco0_6AVvWqwqNVoR8bRcOP3luHGKhwXgKA/edit?usp=sharing
+
+64. 앱실습, 위치기반 구글지도 앱 : https://docs.google.com/presentation/d/13PAODc16my9K_qOU-Xs4N7QASkDXCR6jN3hmtEwk0-E/edit?usp=sharing
+
+
