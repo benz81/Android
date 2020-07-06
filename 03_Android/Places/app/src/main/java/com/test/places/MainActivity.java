@@ -140,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void addNetworkData() {
         String url = "";
+        
         if(keyword.isEmpty()){
             url = baseUrl+ key +"&location="+lat+","+lng+"&pagetoken="+pageToken;
         }else{
