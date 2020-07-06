@@ -1,14 +1,17 @@
 package com.test.places.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.test.places.MapsActivity;
 import com.test.places.R;
 import com.test.places.model.Store;
 
@@ -50,11 +53,23 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         public TextView txtName;
         public TextView txtAddr;
+        public CardView cardView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtName = itemView.findViewById(R.id.txtName);
             txtAddr = itemView.findViewById(R.id.txtAddr);
+            cardView = itemView.findViewById(R.id.cardView);
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int index = getAdapterPosition();
+                    Store store = storeArrayList.get(index);
+                    Intent i = new Intent(context, MapsActivity.class);
+                    i.putExtra("store", store);
+                    context.startActivity(i);
+                }
+            });
         }
     }
 }

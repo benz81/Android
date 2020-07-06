@@ -1,6 +1,8 @@
 package com.test.places.model;
 
-public class Store {
+import java.io.Serializable;
+
+public class Store implements Serializable {
 
     private String name;
     private String addr;

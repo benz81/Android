@@ -31,7 +31,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-// 
+//
 public class MainActivity extends AppCompatActivity {
 
     EditText editSearch;
