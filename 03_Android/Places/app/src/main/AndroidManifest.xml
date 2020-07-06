@@ -34,9 +34,15 @@
             android:value="@string/google_maps_key" />
 
         <activity
+            android:name=".MyMapsActivity"
+            android:label="@string/title_activity_my_maps"></activity>
+        <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
-        <activity android:name=".MainActivity">
+            android:label="@string/title_activity_maps" />
+        <activity
+            android:name=".MainActivity"
+            android:label="상점검색"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
