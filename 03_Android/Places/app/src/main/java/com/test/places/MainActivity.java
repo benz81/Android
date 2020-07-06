@@ -292,6 +292,7 @@ public class MainActivity extends AppCompatActivity {
                     MyMapsActivity.class);
             i.putExtra("lat", lat);
             i.putExtra("lng", lng);
+            i.putExtra("storeList", storeArrayList);
             startActivity(i);
         }
 

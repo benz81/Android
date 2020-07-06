@@ -11,6 +11,9 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.test.places.model.Store;
+
+import java.util.ArrayList;
 
 public class MyMapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -18,6 +21,7 @@ public class MyMapsActivity extends FragmentActivity implements OnMapReadyCallba
 
     double lat;
     double lng;
+    ArrayList<Store> storeArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,8 @@ public class MyMapsActivity extends FragmentActivity implements OnMapReadyCallba
         Intent i = getIntent();
         lat = i.getDoubleExtra("lat", 37.5412538);
         lng = i.getDoubleExtra("lng", 126.8359702);
+        storeArrayList = (ArrayList<Store>) i.getSerializableExtra("storeList");
+
     }
 
     /**
@@ -47,6 +53,14 @@ public class MyMapsActivity extends FragmentActivity implements OnMapReadyCallba
         mMap = googleMap;
 
         LatLng me = new LatLng(lat, lng);
+
+        for(Store store : storeArrayList){
+            MarkerOptions options = new MarkerOptions()
+                    .position(new LatLng(store.getLat(), store.getLng()))
+                    .title(store.getName()).snippet(store.getAddr());
+            mMap.addMarker(options);
+        }
+
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(me, 16));
     }
 }
