@@ -120,3 +120,5 @@
 64. 앱실습, 위치기반 구글지도 앱 : https://docs.google.com/presentation/d/13PAODc16my9K_qOU-Xs4N7QASkDXCR6jN3hmtEwk0-E/edit?usp=sharing
 
 65. 파이어베이스(파이어스토어) 이용하기 : https://docs.google.com/presentation/d/13JmOlT6UVOdX3Taffy6kE70d3cTPU0JhhoouSOA3zw8/edit?usp=sharing
+
+66. 앱실습, Firestore를 이용한 클라우드 주소록 : https://docs.google.com/presentation/d/1fr-XZa50i_AEdffxYuxk56uePTkU7FOdwXZ_q1eAkac/edit?usp=sharing
