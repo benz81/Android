@@ -58,4 +58,12 @@
         android:layout_margin="10dp"
         android:text="LOAD"
         android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="DELETE"
+        android:textSize="24sp" />
 </LinearLayout>

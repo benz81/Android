@@ -10,11 +10,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.block.myfirestore.model.Journal;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
     TextView txtThought;
     Button btnLoad;
 
+    Button btnDelete;
+
+    ArrayList<Journal> journalArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,24 +49,18 @@ public class MainActivity extends AppCompatActivity {
         txtTitle = findViewById(R.id.txtTitle);
         txtThought = findViewById(R.id.txtThought);
         btnLoad = findViewById(R.id.btnLoad);
+        btnDelete = findViewById(R.id.btnDelete);
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String title = editTitle.getText().toString().trim();
                 String thought = editThought.getText().toString().trim();
-
-                Map<String, Object> data = new HashMap<>();
-                data.put(KEY_TITLE, title);
-                data.put(KEY_THOUGHT, thought);
-
-                db.collection("Journal")
-                        .document("First Thoughts")
-                        .set(data)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                Journal journal = new Journal(title, thought);
+                db.collection("Journal").add(journal)
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
-                            public void onSuccess(Void aVoid) {
-                                Log.i("AAA", "저장 성공");
+                            public void onSuccess(DocumentReference documentReference) {
                                 editTitle.setText("");
                                 editThought.setText("");
                             }
@@ -66,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Log.i("AAA", e.toString());
                             }
                         });
             }
@@ -75,28 +76,48 @@ public class MainActivity extends AppCompatActivity {
         btnLoad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                db.collection("Journal")
-                        .document("First Thoughts")
-                        .get()
-                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                db.collection("Journal").get()
+                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                             @Override
-                            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                String title = documentSnapshot.getString(KEY_TITLE);
-                                String thought = documentSnapshot.getString(KEY_THOUGHT);
-
-                                txtTitle.setText(title);
-                                txtThought.setText(thought);
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                for(QueryDocumentSnapshot snapshots : queryDocumentSnapshots){
+                                    String id = snapshots.getId();
+                                    Log.i("AAA", id);
+                                    Journal journal = snapshots.toObject(Journal.class);
+                                    journalArrayList.add(journal);
+                                }
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
+
                             }
                         });
             }
         });
 
 
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                db.collection("Journal")
+                        .document("Yg8RSi4yJ6WoXMCoRUDs")
+                        .delete()
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+
+                            }
+                        });
+            }
+        });
     }
 }
 
