@@ -1,5 +1,7 @@
 # Android Edu
 
+화면설계 포트폴리오 제출(이미지,소스코드) : https://drive.google.com/drive/folders/1JmijYXdRAFOI58w_EyFOStM2RXmYMGgR?usp=sharing
+
 ### 강의 자료
 
 - 강의 소개 : https://drive.google.com/open?id=1qsPJOVma__ExF8uyqJ84UdybZPDy0DmQ_W2EEmCR1LE 
