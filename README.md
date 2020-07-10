@@ -129,3 +129,5 @@
 68. Node Mysql 실습 1 : https://docs.google.com/presentation/d/1GnDWfAvQa1rs-49S9yCpfKLNfF6Vgx9oXYRNga9Vric/edit?usp=sharing
 
 69. Node Mysql 실습 2 : https://docs.google.com/presentation/d/1uIK828kZqXL7f9A3ZLZGb_hthankn6nzlw6HbR4ZJqA/edit?usp=sharing
+
+70. Node Mysql 실습 3 : https://docs.google.com/presentation/d/1kxc02jccqpNJnzOYIsO2JXNIb0hhOsbsrJ8-Qq-XZjY/edit?usp=sharing
