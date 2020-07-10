@@ -123,3 +123,7 @@
 65. 파이어베이스(파이어스토어) 이용하기 : https://docs.google.com/presentation/d/13JmOlT6UVOdX3Taffy6kE70d3cTPU0JhhoouSOA3zw8/edit?usp=sharing
 
 66. 앱실습, Firestore를 이용한 클라우드 주소록 : https://docs.google.com/presentation/d/1fr-XZa50i_AEdffxYuxk56uePTkU7FOdwXZ_q1eAkac/edit?usp=sharing
+
+67. 자바스크립트 기초 문법 : https://docs.google.com/presentation/d/1_rbyBq3yp0cs6WXxWr0Hd59SlKuGGmU6bif7G2w2XV8/edit?usp=sharing
+
+68. Node Mysql 실습 1 : https://docs.google.com/presentation/d/1GnDWfAvQa1rs-49S9yCpfKLNfF6Vgx9oXYRNga9Vric/edit?usp=sharing
