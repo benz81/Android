@@ -127,3 +127,5 @@
 67. 자바스크립트 기초 문법 : https://docs.google.com/presentation/d/1_rbyBq3yp0cs6WXxWr0Hd59SlKuGGmU6bif7G2w2XV8/edit?usp=sharing
 
 68. Node Mysql 실습 1 : https://docs.google.com/presentation/d/1GnDWfAvQa1rs-49S9yCpfKLNfF6Vgx9oXYRNga9Vric/edit?usp=sharing
+
+69. Node Mysql 실습 2 : https://docs.google.com/presentation/d/1uIK828kZqXL7f9A3ZLZGb_hthankn6nzlw6HbR4ZJqA/edit?usp=sharing
