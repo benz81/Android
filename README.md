@@ -133,3 +133,5 @@
 70. Node Mysql 실습 3 : https://docs.google.com/presentation/d/1kxc02jccqpNJnzOYIsO2JXNIb0hhOsbsrJ8-Qq-XZjY/edit?usp=sharing
 
 71. Node Mysql 실습 5: https://docs.google.com/presentation/d/1w8auQ9u5QijCOlDkA9iQad0GSX8diSMmLAgBroM65HU/edit?usp=sharing
+
+72. Node HTTP and DB 실습 6 :https://docs.google.com/presentation/d/1QkqhvRUxr10CsphpsDaWSUIfsaqJ0Yg9MKxatzg9MWQ/edit?usp=sharing
