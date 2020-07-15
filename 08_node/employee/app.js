@@ -15,11 +15,16 @@ request.get( {url:  baseUrl+path, json:true} ,
         // body.data[0].employee_salary+', '+
         // body.data[0].employee_age+');'
         
-        let query = `insert into employee (name, salary, age) 
-        values ( "${body.data[1].employee_name}", 
-        ${body.data[1].employee_salary}, 
-        ${body.data[1].employee_age}  );`
+        let array = body.data
 
+        let query = 'insert into employee (name, salary, age) values '
+        
+        for(let i = 0; i < array.length; i++){
+            query = query + `("${array[i].employee_name}" , 
+                                ${array[i].employee_salary}, 
+                                ${array[i].employee_age}),`
+        }
+        query = query.slice(0, -1)
         console.log(query)
 
         connection.query(query, function(error, results, fields){
@@ -29,6 +34,9 @@ request.get( {url:  baseUrl+path, json:true} ,
     });
 
 
-
-
-
+// 인서트 문 하나로, 여러 문장을 한번에 집어 넣는 방법.
+// insert into employee (name, salary, age) values
+// ("${body.data[0].name}",${body.data[0].salary},${body.data[0].age}),
+// ("${body.data[1].name}",${body.data[1].salary},${body.data[1].age}),
+// ("${body.data[2].name}",${body.data[2].salary},${body.data[2].age}),
+// ("${body.data[3].name}",${body.data[3].salary},${body.data[3].age})
