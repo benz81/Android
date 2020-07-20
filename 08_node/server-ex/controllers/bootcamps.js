@@ -5,8 +5,8 @@ const connection = require("../db/mysql_connection");
 // @access  Public
 exports.getBootcamps = async (req, res, next) => {
   try {
-    const [rows, fields] = await connection.query("select * from bootcampa");
-    res.status(200).json(rows);
+    const [rows, fields] = await connection.query("select * from bootcamp");
+    res.status(200).json({ success: true, items: rows });
   } catch (e) {
     res.status(500).json(e);
   }
@@ -15,31 +15,65 @@ exports.getBootcamps = async (req, res, next) => {
 // @desc    해당 아이디의 정보 조회
 // @route   GET /api/v1/bootcamps/id
 // @access  Public
-exports.getBootcamp = (req, res, next) => {
-  res.status(200).json({
-    success: true,
-    msg: `Show bootcamp ${req.params.id} 번`,
-  });
+exports.getBootcamp = async (req, res, next) => {
+  try {
+    [rows, fields] = await connection.query(
+      `select * from bootcamp where id = ${req.params.id}`
+    );
+    if (rows.length != 0) {
+      res.status(200).json({ success: true, item: rows[0] });
+    } else {
+      res.status(400).json({ success: false });
+    }
+  } catch (e) {
+    res.status(500).json({ success: false, error: e });
+  }
 };
 
 // @desc    새로운 정보를 인서트
 // @route   POST /api/v1/bootcamps
 // @access  Public
-exports.createBootcamp = (req, res, next) => {
-  res.status(200).json({
-    success: true,
-    msg: "Create new bootcamp",
-  });
+exports.createBootcamp = async (req, res, next) => {
+  let title = req.body.title;
+  let subject = req.body.subject;
+  let teacher = req.body.teacher;
+  let start_time = req.body.start_time;
+
+  let query =
+    "insert into bootcamp \
+    (title, subject, teacher, start_time) values ?";
+  let data = [title, subject, teacher, start_time];
+
+  try {
+    [rows, filed] = await connection.query(query, [[data]]);
+    res.status(200).json({ success: true, user_id: rows.insertId });
+    console.log(rows.insertId);
+  } catch (e) {
+    res.status(500).json({ success: false, error: e });
+  }
 };
 
 // @desc    기존 정보를 업데이트
 // @route   PUT /api/v1/bootcamps/id
 // @access  Public
-exports.updateBootcamp = (req, res, next) => {
-  res.status(200).json({
-    success: true,
-    msg: `Update bootcamp ${req.params.id}`,
-  });
+exports.updateBootcamp = async (req, res, next) => {
+  let id = req.params.id;
+  let title = req.body.title;
+  let subject = req.body.subject;
+  let teacher = req.body.teacher;
+  let start_time = req.body.start_time;
+
+  let query =
+    "update bootcamp set title = ? , subject = ? , \
+  teacher = ? , start_time = ?  where id = ? ";
+
+  let data = [title, subject, teacher, start_time, id];
+  try {
+    [rows, fields] = await connection.query(query, data);
+    res.status(200).json({ success: true });
+  } catch (e) {
+    res.status(500).json({ success: false, error: e });
+  }
 };
 
 // @desc    해당 정보를 삭제
