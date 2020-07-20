@@ -1,11 +1,15 @@
+const connection = require("../db/mysql_connection");
+
 // @desc    모든 정보를 다 조회
 // @route   GET /api/v1/bootcamps
 // @access  Public
-exports.getBootcamps = (req, res, next) => {
-  res
-    .status(200)
-    .json({ success: true, msg: "Show all bootcamps", 
-    middleware: req.hello });
+exports.getBootcamps = async (req, res, next) => {
+  try {
+    const [rows, fields] = await connection.query("select * from bootcampa");
+    res.status(200).json(rows);
+  } catch (e) {
+    res.status(500).json(e);
+  }
 };
 
 // @desc    해당 아이디의 정보 조회
