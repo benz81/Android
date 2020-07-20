@@ -137,3 +137,5 @@
 72. Node HTTP and DB 실습 6 :https://docs.google.com/presentation/d/1QkqhvRUxr10CsphpsDaWSUIfsaqJ0Yg9MKxatzg9MWQ/edit?usp=sharing
 
 73. API서버 개발 환경 셋팅 : https://docs.google.com/presentation/d/17rUGzqayNE1yor1nY2uE_yQ_AkaUYZFTKzdde9FxZ3E/edit?usp=sharing
+
+74. Node 실습 7 : https://docs.google.com/presentation/d/1BP25S7VGaqsYHeoZNpd_IBZztPJU_UoEKAF1kgbjHA0/edit?usp=sharing
