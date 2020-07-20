@@ -1,4 +1,5 @@
 const connection = require("../db/mysql_connection");
+const ErrorResponse = require("../utils/errorResponse");
 
 // @desc    모든 정보를 다 조회
 // @route   GET /api/v1/bootcamps
@@ -8,7 +9,7 @@ exports.getBootcamps = async (req, res, next) => {
     const [rows, fields] = await connection.query("select * from bootcamp");
     res.status(200).json({ success: true, items: rows });
   } catch (e) {
-    res.status(500).json(e);
+    next(new ErrorResponse("부트캠프 전부 가져오는데 에러 발생", 400));
   }
 };
 
@@ -23,10 +24,10 @@ exports.getBootcamp = async (req, res, next) => {
     if (rows.length != 0) {
       res.status(200).json({ success: true, item: rows[0] });
     } else {
-      res.status(400).json({ success: false });
+      return next(new ErrorResponse("아이디값 잘못 보냈음", 400));
     }
   } catch (e) {
-    res.status(500).json({ success: false, error: e });
+    next(new ErrorResponse("부트캠프 가져오는데 DB에러 발생", 500));
   }
 };
 
@@ -79,9 +80,20 @@ exports.updateBootcamp = async (req, res, next) => {
 // @desc    해당 정보를 삭제
 // @route   DELETE /api/v1/bootcamps/id
 // @access  Public
-exports.deleteBootcamp = (req, res, next) => {
-  res.status(200).json({
-    success: true,
-    msg: `Delete bootcamp ${req.params.id}`,
-  });
+exports.deleteBootcamp = async (req, res, next) => {
+  let id = req.params.id;
+
+  let query = `delete from bootcamp where id = ${id} `;
+
+  try {
+    [result] = await connection.query(query);
+    console.log(result);
+    if (result.affectedRows == 1) {
+      res.status(200).json({ success: true });
+    } else {
+      res.status(400).json({ success: false });
+    }
+  } catch (e) {
+    res.status(500).json({ success: false, error: e });
+  }
 };
