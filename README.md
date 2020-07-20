@@ -139,3 +139,5 @@
 73. API서버 개발 환경 셋팅 : https://docs.google.com/presentation/d/17rUGzqayNE1yor1nY2uE_yQ_AkaUYZFTKzdde9FxZ3E/edit?usp=sharing
 
 74. Node 실습 7 : https://docs.google.com/presentation/d/1BP25S7VGaqsYHeoZNpd_IBZztPJU_UoEKAF1kgbjHA0/edit?usp=sharing
+
+75. Node 실습 8 : https://docs.google.com/presentation/d/1b8tVh10Ca7oAEdUehZo1e9Sr3FoxSrbyv8UT2nuZhdI/edit?usp=sharing
