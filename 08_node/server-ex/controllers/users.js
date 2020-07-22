@@ -3,6 +3,7 @@ const ErrorResponse = require("../utils/errorResponse");
 const validator = require("validator");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { query } = require("../db/mysql_connection");
 
 // @desc    회원가입
 // @route   POST /api/v1/users   => 나
@@ -26,12 +27,12 @@ exports.createUser = async (req, res, next) => {
     return;
   }
   // 유저 인서트
-  query = "insert into user (email, passwd) values ? ";
-  data = [email, hashedPasswd];
-
+  let query = "insert into user (email, passwd) values ? ";
+  let data = [email, hashedPasswd];
+  let user_id;
   try {
     [result] = await connection.query(query, [[data]]);
-    res.status(200).json({ success: true, result: result });
+    user_id = result.insertId;
   } catch (e) {
     if (e.errno == 1062) {
       // 이메일 중복된것 이다.
@@ -41,6 +42,18 @@ exports.createUser = async (req, res, next) => {
     } else {
       res.status(500).json({ success: false, error: e });
     }
+  }
+
+  let token = jwt.sign({ user_id: user_id }, process.env.ACCESS_TOKEN_SECRET);
+
+  query = "insert into token (token, user_id) values ( ? , ? )";
+  data = [token, user_id];
+
+  try {
+    [result] = await connection.query(query, data);
+    res.status(200).json({ success: true, token: token });
+  } catch (e) {
+    res.status(500).json({ success: false, error: e });
   }
 };
 
