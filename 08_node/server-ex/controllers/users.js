@@ -2,6 +2,7 @@ const connection = require("../db/mysql_connection");
 const ErrorResponse = require("../utils/errorResponse");
 const validator = require("validator");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 // @desc    회원가입
 // @route   POST /api/v1/users   => 나
@@ -43,8 +44,6 @@ exports.createUser = async (req, res, next) => {
   }
 };
 
-// 로그인 api를 개발하세요.
-
 // @desc    로그인
 // @route   POST /api/v1/users/login
 // @parameters  {"email" : "hello@gmail.com" , "passwd":"1234"}
@@ -62,8 +61,24 @@ exports.loginUser = async (req, res, next) => {
     // 비밀번호 체크 : 비밀번호가 서로 맞는지 확인
     let isMatch = await bcrypt.compare(passwd, savedPasswd);
     // let isMatch = bcrypt.compareSync(passwd, savedPasswd);
+    if (isMatch == false) {
+      res.status(400).json({ success: false, result: isMatch });
+      return;
+    }
+    let token = jwt.sign(
+      { user_id: rows[0].id },
+      process.env.ACCESS_TOKEN_SECRET
+    );
 
-    res.status(200).json({ success: true, result: isMatch });
+    query = "insert into token (token, user_id) values (?, ? )";
+    data = [token, rows[0].id];
+
+    try {
+      [result] = await connection.query(query, data);
+      res.status(200).json({ success: true, result: isMatch, token: token });
+    } catch (e) {
+      res.status(500).json({ success: false, error: e });
+    }
   } catch (e) {
     res.status(500).json({ success: false, error: e });
   }
@@ -85,7 +100,8 @@ exports.changePasswd = async (req, res, next) => {
     [rows] = await connection.query(query, data);
     let savedPasswd = rows[0].passwd;
 
-    let isMatch = bcrypt.compareSync(passwd, savedPasswd);
+    let isMatch = await bcrypt.compareSync(passwd, savedPasswd);
+    // let isMatch = bcrypt.compareSync(passwd, savedPasswd);
 
     if (isMatch != true) {
       res.status(401).json({ success: false, result: isMatch });
@@ -105,6 +121,26 @@ exports.changePasswd = async (req, res, next) => {
       res.status(200).json({ success: true });
     } else {
       res.status(200).json({ success: false });
+    }
+  } catch (e) {
+    res.status(500).json({ success: false, error: e });
+  }
+};
+
+// @desc    내정보 가져오기
+// @route   GET /api/v1/users/:id
+exports.getMyInfo = async (req, res, next) => {
+  let id = req.params.id;
+
+  let query = `select * from user where id = ${id}`;
+
+  try {
+    [rows] = await connection.query(query);
+    if (rows.length != 1) {
+      res.status(400).json({ success: false });
+    } else {
+      delete rows[0].passwd;
+      res.status(200).json({ success: true, result: rows[0] });
     }
   } catch (e) {
     res.status(500).json({ success: false, error: e });
