@@ -40,7 +40,7 @@ const auth = async (req, res, next) => {
   // 유효한 토큰이 맞으니까, 유저 정보를 db에서 가져옵니다.
   if (isCorrect) {
     query = `select * from user where id = ${user_id}`;
-
+    console.log(query);
     try {
       [rows] = await connection.query(query);
       // 유저 정보를, req에 셋팅해서 next()한다.

@@ -143,22 +143,9 @@ exports.changePasswd = async (req, res, next) => {
 };
 
 // @desc    내정보 가져오기
-// @route   GET /api/v1/users/:id
+// @route   GET /api/v1/users
 exports.getMyInfo = async (req, res, next) => {
   console.log("내 정보 가져오는 API", req.user);
-  let id = req.params.id;
 
-  let query = `select * from user where id = ${id}`;
-
-  try {
-    [rows] = await connection.query(query);
-    if (rows.length != 1) {
-      res.status(400).json({ success: false });
-    } else {
-      delete rows[0].passwd;
-      res.status(200).json({ success: true, result: rows[0] });
-    }
-  } catch (e) {
-    res.status(500).json({ success: false, error: e });
-  }
+  res.status(200).json({ success: true, result: req.user });
 };

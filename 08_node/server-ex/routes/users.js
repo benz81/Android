@@ -9,8 +9,7 @@ const {
 
 const router = express.Router();
 
-router.route("/").post(createUser);
-router.route("/:id").get(auth, getMyInfo);
+router.route("/").post(createUser).get(auth, getMyInfo);
 router.route("/login").post(loginUser);
 router.route("/change").post(changePasswd);
 
