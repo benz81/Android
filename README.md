@@ -141,3 +141,5 @@
 74. Node 실습 7 : https://docs.google.com/presentation/d/1BP25S7VGaqsYHeoZNpd_IBZztPJU_UoEKAF1kgbjHA0/edit?usp=sharing
 
 75. Node 실습 8 : https://docs.google.com/presentation/d/1b8tVh10Ca7oAEdUehZo1e9Sr3FoxSrbyv8UT2nuZhdI/edit?usp=sharing
+
+76. 포스트맨 토큰 설정 방법 : https://docs.google.com/presentation/d/1yN5oqpKkYG6y1IIJ188CGvZgw_fy89HcWCPjICmxQl8/edit?usp=sharing
