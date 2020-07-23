@@ -145,7 +145,7 @@ exports.changePasswd = async (req, res, next) => {
 // @desc    내정보 가져오기
 // @route   GET /api/v1/users/:id
 exports.getMyInfo = async (req, res, next) => {
-  console.log("내 정보 가져오는 API");
+  console.log("내 정보 가져오는 API", req.user);
   let id = req.params.id;
 
   let query = `select * from user where id = ${id}`;
