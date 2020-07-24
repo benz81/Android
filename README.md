@@ -1,6 +1,6 @@
 # Android Edu
 
-### 문제해결 시나리오 제출(이미지,소스코드) : https://drive.google.com/drive/folders/1crBbMk-x4VMUp46Sw2SIBk5yTfzMo-nE?usp=sharing
+문제해결 시나리오 제출(이미지,소스코드) : https://drive.google.com/drive/folders/1crBbMk-x4VMUp46Sw2SIBk5yTfzMo-nE?usp=sharing
 
 
 
