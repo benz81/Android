@@ -90,3 +90,16 @@ exports.loginUser = async (req, res, next) => {
     return;
   }
 };
+
+// @desc  내 정보 가져오는 API
+// @url   GET /apt/v1/users/me
+// @request
+// @response  id, email, created_at
+
+exports.myInfo = (req, res, next) => {
+  // 인증 토큰 검증 통과해서 이 함수로 온다.
+
+  let userInfo = req.user;
+
+  res.status(200).json(userInfo);
+};
