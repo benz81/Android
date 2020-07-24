@@ -57,9 +57,10 @@ exports.loginUser = async (req, res, next) => {
   let query = "select * from memo_user where email = ? ";
   let data = [email];
 
+  console.log(email);
   let user_id;
   try {
-    [rows] = connection.query(query, data);
+    [rows] = await connection.query(query, data);
     if (rows.length == 0) {
       res.status(400).json({ success: false, message: "없는 아이디" });
       return;
@@ -73,7 +74,19 @@ exports.loginUser = async (req, res, next) => {
     user_id = rows[0].id;
   } catch (e) {
     res.status(500).json({ success: false, error: e });
+    return;
   }
 
   let token = jwt.sign({ user_id: user_id }, process.env.AUTH_TOKEN_SECRET);
+
+  query = "insert into memo_token (token, user_id) values (? , ?)";
+  data = [token, user_id];
+  try {
+    [result] = await connection.query(query, data);
+    res.status(200).json({ success: true, token: token });
+    return;
+  } catch (e) {
+    res.status(500).json({ success: false, error: e });
+    return;
+  }
 };
