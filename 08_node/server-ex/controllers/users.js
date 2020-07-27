@@ -149,3 +149,44 @@ exports.getMyInfo = async (req, res, next) => {
 
   res.status(200).json({ success: true, result: req.user });
 };
+
+// @desc  로그아웃 api : DB에서 해당 유저의 현재 토큰값을 삭제
+// @route POST /api/v1/users/logout
+// @parameters  no
+exports.logout = async (req, res, next) => {
+  // 토큰테이블에서, 현재 이 헤더에 있는 토큰으로, 삭제한다.
+  let token = req.user.token;
+  let user_id = req.user.id;
+  let query = `delete from token where user_id = ${user_id} and token = "${token}" `;
+  try {
+    [result] = await connection.query(query);
+    if (result.affectedRows == 1) {
+      res.status(200).json({ success: true, result: result });
+      return;
+    } else {
+      res.status(400).json({ success: false });
+    }
+  } catch (e) {
+    res.status(500).json({ success: false, error: e });
+  }
+};
+
+// 안드로이드 사용하고, 아이폰도 사용하고, 집 컴도 사용.
+// 이 서비스를 각각의 디바이스 마다 다 로그인하여 사용 중이었다.
+// 전체 디바이스(기기) 전부 다 로그아웃을 시키게 하는 API
+
+// @desc  전체 기기에서 모두 로그아웃 하기
+// @route POST  /api/v1/users/logoutAll
+exports.logoutAll = async (req, res, next) => {
+  let user_id = req.user.id;
+
+  let query = `delete from token where user_id = ${user_id} `;
+
+  try {
+    [result] = await connection.query(query);
+    res.status(200).json({ success: true, result: result });
+    return;
+  } catch (e) {
+    res.status(500).json({ success: false, error: e });
+  }
+};
