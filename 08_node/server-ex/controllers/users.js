@@ -190,3 +190,31 @@ exports.logoutAll = async (req, res, next) => {
     res.status(500).json({ success: false, error: e });
   }
 };
+
+// 회원탈퇴 : db에서 해당 회원의 유저 테이블 정보 삭제
+// => 유저 정보가 있는 다른 테이블도 정보 삭제.
+
+// @desc  회원탈퇴 :  유저 테이블에서 삭제, 토큰 테이블에서 삭제
+// @route DELETE  /api/v1/users
+
+exports.deleteUser = async (req, res, next) => {
+  let user_id = req.user.id;
+  let query = `delete from user where id = ${user_id}`;
+  const conn = await connection.getConnection();
+  try {
+    await conn.beginTransaction();
+    // 첫번째 테이블에서 정보 삭제
+    [result] = await conn.query(query);
+    // 두번째 테이블에서 정보 삭제
+    query = `delete from token where user_id = ${user_id}`;
+    [result] = await conn.query(query);
+
+    await conn.commit();
+    res.status(200).json({ success: true });
+  } catch (e) {
+    await conn.rollback();
+    res.status(500).json({ success: false, error: e });
+  } finally {
+    conn.release();
+  }
+};
