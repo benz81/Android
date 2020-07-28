@@ -3,7 +3,10 @@ const ErrorResponse = require("../utils/errorResponse");
 const validator = require("validator");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const crypto = require("crypto-js");
+
 const { query } = require("../db/mysql_connection");
+const sendEmail = require("../utils/sendMail");
 
 // @desc    회원가입
 // @route   POST /api/v1/users   => 나
@@ -53,6 +56,18 @@ exports.createUser = async (req, res, next) => {
 
   try {
     [result] = await connection.query(query, data);
+
+    const message = "환영합니다.";
+    try {
+      await sendEmail({
+        email: email,
+        subject: "회원가입축하",
+        message: message,
+      });
+    } catch (e) {
+      res.status(500).json({ success: false, error: e });
+    }
+
     res.status(200).json({ success: true, token: token });
   } catch (e) {
     res.status(500).json({ success: false, error: e });
@@ -215,6 +230,39 @@ exports.deleteUser = async (req, res, next) => {
     await conn.rollback();
     res.status(500).json({ success: false, error: e });
   } finally {
-    conn.release();
+    await conn.release();
   }
 };
+
+// 유저가 패스워드를 분실!
+
+// 1. 클라언트가 패스워드 분실했다고 서버한테 요청
+//    서버가 패스워드를 변경할수 있는 url을 클라이언트한테 보내준다.
+//    (경로에 암호화된 문자열을 보내줍니다-토큰역할)
+
+// @desc  패스워드 분식
+// @route POST  /api/v1/users/forgotpasswd
+exports.forgotPasswd = async (req, res, next) => {
+  let user = req.user;
+  // 암호화된 문자열 만드는 방법
+  const resetToken = Math.random().toString(20);
+  console.log(resetToken);
+  const resetPasswdToken = crypto.SHA256(resetToken);
+  console.log("token : ", resetPasswdToken);
+
+  // 유저 테이블에, reset_passwd_token 컬럼에 저장.
+  let query = "update user set reset_passwd_token = ? where id = ? ";
+  let data = [resetPasswdToken, user.id];
+
+  try {
+    [result] = await connection.query(query, data);
+    user.reset_passwd_token = resetPasswdToken;
+    res.status(200).json({ success: true, data: user });
+  } catch (e) {
+    res.status(500).json({ success: false, error: e });
+  }
+};
+
+// 2. 클라이언트는 해당 암호화된 주소를 받아서, 새로운 비밀번호를 함께
+//    서버로 보냅니다.
+//    서버는, 이 주소가 진짜 유효한지 확인해서, 새로운 비밀번호로 셋팅.
