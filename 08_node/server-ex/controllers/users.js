@@ -3,7 +3,7 @@ const ErrorResponse = require("../utils/errorResponse");
 const validator = require("validator");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const crypto = require("crypto-js");
+const crypto = require("crypto");
 
 const { query } = require("../db/mysql_connection");
 const sendEmail = require("../utils/sendMail");
@@ -245,10 +245,11 @@ exports.deleteUser = async (req, res, next) => {
 exports.forgotPasswd = async (req, res, next) => {
   let user = req.user;
   // 암호화된 문자열 만드는 방법
-  const resetToken = Math.random().toString(20);
-  console.log(resetToken);
-  const resetPasswdToken = crypto.SHA256(resetToken);
-  console.log("token : ", resetPasswdToken);
+  const resetToken = crypto.randomBytes(20).toString("hex");
+  const resetPasswdToken = crypto
+    .createHash("sha256")
+    .update(resetToken)
+    .digest("hex");
 
   // 유저 테이블에, reset_passwd_token 컬럼에 저장.
   let query = "update user set reset_passwd_token = ? where id = ? ";
