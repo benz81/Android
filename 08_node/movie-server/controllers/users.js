@@ -81,9 +81,29 @@ exports.loginUser = async (req, res, next) => {
   }
   const token = jwt.sign({ user_id: user_id }, process.env.ACCESS_TOKEN_SECRET);
   query = "insert into movie_token (token, user_id) values (?, ?)";
+  data = [token, user_id];
   try {
     [result] = await connection.query(query, data);
     res.status(200).json({ success: true, token: token });
+  } catch (e) {
+    res.status(500).json();
+  }
+};
+
+// @desc    로그아웃 (현재의 기기 1개에 대한 로그아웃)
+// @route   /api/v1/users/logout
+
+exports.logout = async (req, res, next) => {
+  // movie_token 테이블에서, 토큰 삭제해야 로그아웃이 되는것이다.
+
+  let user_id = req.user.id;
+  let token = req.user.token;
+
+  let query = "delete from movie_token where user_id = ? and token = ? ";
+  let data = [user_id, token];
+  try {
+    [result] = await connection.query(query, data);
+    res.status(200).json({ success: true });
   } catch (e) {
     res.status(500).json();
   }
