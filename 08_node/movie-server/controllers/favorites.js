@@ -1,6 +1,5 @@
 // 데이터베이스 처리 위한 라이브러리 필요
 const connection = require("../db/mysql_connection");
-const { off } = require("../db/mysql_connection");
 
 // @desc    좋아하는 영화 추가
 // @route   POST /api/v1/favorites
