@@ -153,3 +153,5 @@
 77. Node 실습 9 : https://docs.google.com/presentation/d/1rPOjHkkKmYTPNq7u4Bte25z8lLuDxFlcR4u65XQFtaM/edit?usp=sharing
 
 78. Node 실습 10 댓글 : https://docs.google.com/presentation/d/1yiHRz-Im_qYEI7735oJIu1uIsIe1q3LEu4xqHllSDyM/edit?usp=sharing
+
+79. Node 실습 11 좌석예약 : https://docs.google.com/presentation/d/1Uy8coJvFXaMJcTYS_4QF-j1fAj9mmgzJB1fBq74hYxw/edit?usp=sharing
