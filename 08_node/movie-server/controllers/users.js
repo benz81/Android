@@ -152,7 +152,16 @@ exports.userPhotoUpload = async (req, res, next) => {
     }
   });
 
-  res.status(200).json();
+  // db에 이 파일이름을 업데이트 한다.
+  let query = "update movie_user set photo_url = ? where id = ? ";
+  let data = [photo.name, user_id];
+
+  try {
+    [result] = await connection.query(query, data);
+    res.status(200).json({ success: true });
+  } catch (e) {
+    res.status(500).json();
+  }
 };
 
 // {
