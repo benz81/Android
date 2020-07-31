@@ -1,6 +1,7 @@
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const path = require("path");
 const connection = require("../db/mysql_connection");
 
 // @desc    회원가입
@@ -132,5 +133,38 @@ exports.userPhotoUpload = async (req, res, next) => {
     return;
   }
 
+  if (photo.size > process.env.MAX_FILE_SIZE) {
+    res.status(400).json({ message: "파일크기가 정해진것보다 큽니다." });
+    return;
+  }
+  // fall.jpg  => photo_3.jpg
+  // abc.png   => photo_3.png
+  photo.name = `photo_${user_id}${path.parse(photo.name).ext}`;
+
+  // 저장할 경로 셋팅 : ./public/upload/photo_3.jpg
+  let fileUploadPath = `${process.env.FILE_UPLOAD_PATH}/${photo.name}`;
+
+  // 파일을 ㅇ우리가 지정한 경로에 저장.
+  photo.mv(fileUploadPath, async (err) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+  });
+
   res.status(200).json();
 };
+
+// {
+//   photo: {
+//     name: 'fall.jpg',
+//     data: <Buffer ff d8 ff e0 00 10 4a 46 49 46 00 01 01 00 00 01 00 01 00 00 ff db 00 84 00 08 08 08 08 09 08 09 0a 0a 09 0d 0e 0c 0e 0d 13 12 10 10 12 13 1d 15 16 15 ... 1619565 more bytes>,
+//     size: 1619615,
+//     encoding: '7bit',
+//     tempFilePath: '',
+//     truncated: false,
+//     mimetype: 'image/jpeg',
+//     md5: '30fb7544a4c8400608908ec25fe666f3',
+//     mv: [Function: mv]
+//   }
+// }
