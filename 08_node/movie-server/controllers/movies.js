@@ -16,7 +16,14 @@ exports.getMovies = async (req, res, next) => {
     return;
   }
 
-  let query = `select * from movie limit ${offset}, ${limit};`;
+  let query = `select m.*, count(r.movie_id) as reply_cnt, 
+  round(avg(r.rating) , 1) as avg_rating
+  from movie as m
+  left join movie_reply as r
+  on m.id = r.movie_id
+  group by m.id
+  order by m.id
+  limit ${offset}, ${limit};`;
 
   try {
     [rows] = await connection.query(query);

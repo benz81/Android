@@ -1,20 +1,23 @@
 const express = require("express");
 const dotenv = require("dotenv");
-const memos = require("./routes/memos");
-const users = require("./routes/users");
 
-// 환경설정파일 로딩
+const movies = require("./routes/movies");
+const users = require("./routes/users");
+const favorites = require("./routes/favorites");
+const reply = require("./routes/reply");
+const reservations = require("./routes/reservations");
+
 dotenv.config({ path: "./config/config.env" });
 
 const app = express();
-// post 사용시, body 부분을 json으로 사용하겠다.
+
 app.use(express.json());
 
-// 메모처리부분
-app.use("/api/v1/memos", memos);
-// 유저 처리부분
+app.use("/api/v1/movies", movies);
 app.use("/api/v1/users", users);
+app.use("/api/v1/favorites", favorites);
+app.use("/api/v1/reply", reply);
+app.use("/api/v1/reservations", reservations);
 
-const PORT = process.env.PORT || 5100;
-
-app.listen(PORT, console.log("App listening on port 5100!"));
+const PORT = process.env.PORT || 6000;
+app.listen(PORT, console.log("서버 실행됨"));
