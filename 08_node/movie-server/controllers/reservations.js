@@ -82,6 +82,7 @@ exports.getMyReservations = async (req, res, next) => {
 
   // 현재 시간을, 밀리세컨즈 1970년1월1일 이후의 시간 => 숫자 1596164845211
   let currentTime = Date.now();
+  //currentTime = currentTime + 1000*60*30 => 현재부터 30분 이후의 영화가져오기
   // 위의 현재시간 숫자를 => 2020-07-31 12:07:25 식으로 바꿔준것.
   let compareTime = moment(currentTime).format("YYYY-MM-DD HH:mm:ss");
   console.log(currentTime);
@@ -104,6 +105,13 @@ exports.getMyReservations = async (req, res, next) => {
     res.status(500).json();
   }
 };
+
+// db 직접 처리법
+// select
+// if(TIMESTAMPDIFF(MINUTE, DATE_ADD(NOW(), INTERVAL 9 HOUR),
+// 	start_at) > 30, true, false)
+// 	as possible_cancel
+// from manage_reservation as m join reservation as r on m.reserve_id = r.reserve_id;
 
 // @desc        좌석 예약을 취소
 // @route       DELETE /api/v1/reservations/:reservation_id
