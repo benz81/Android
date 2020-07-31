@@ -108,10 +108,9 @@ exports.getMyReservations = async (req, res, next) => {
 
 // db 직접 처리법
 // select
-// if(TIMESTAMPDIFF(MINUTE, DATE_ADD(NOW(), INTERVAL 9 HOUR),
-// 	start_at) > 30, true, false)
+// if(TIMESTAMPDIFF(MINUTE, NOW(), start_at) > 30, true, false)
 // 	as possible_cancel
-// from manage_reservation as m join reservation as r on m.reserve_id = r.reserve_id;
+// from table;
 
 // @desc        좌석 예약을 취소
 // @route       DELETE /api/v1/reservations/:reservation_id

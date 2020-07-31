@@ -108,3 +108,29 @@ exports.logout = async (req, res, next) => {
     res.status(500).json();
   }
 };
+
+// @desc    유저의 프로필 사진 설정하는 API
+// @route   PUT /api/v1/users/me/photo
+// @request photo
+// @response  success
+
+// 클라이언트가 사진을 보낸다. => 서버가 이 사진을 받는다. = >
+// 서버가 이사진을 디렉토리에 저장한다. => 이 사진의 파일명을 DB에 저장한다.
+
+exports.userPhotoUpload = async (req, res, next) => {
+  let user_id = req.user.id;
+  if (!user_id || !req.files) {
+    res.status(400).json();
+    return;
+  }
+  console.log(req.files);
+
+  const photo = req.files.photo;
+  // 지금 받은 파일이, 이미지 파일인지 체크.
+  if (photo.mimetype.startsWith("image") == false) {
+    res.status(400).json({ message: "이미지 파일이 아닙니다." });
+    return;
+  }
+
+  res.status(200).json();
+};

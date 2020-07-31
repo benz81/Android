@@ -1,5 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
+// 파일 처리를 위한 라이브러리 임포트
+const fileupload = require("express-fileupload");
 
 const movies = require("./routes/movies");
 const users = require("./routes/users");
@@ -12,6 +14,7 @@ dotenv.config({ path: "./config/config.env" });
 const app = express();
 
 app.use(express.json());
+app.use(fileupload());
 
 app.use("/api/v1/movies", movies);
 app.use("/api/v1/users", users);
