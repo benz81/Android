@@ -1,3 +1,4 @@
+const moment = require("moment");
 // 데이터베이스 처리 위한 라이브러리 필요
 const connection = require("../db/mysql_connection");
 
@@ -60,5 +61,88 @@ exports.getReservations = async (req, res, next) => {
     res.status(200).json({ success: true, items: rows, cnt: rows.length });
   } catch (e) {
     res.status(500).json({ error: e });
+  }
+};
+
+// @desc        내가 예약한 좌석 정보 불러오기
+// @route       GET /api/v1/reservations/me
+// @request     user_id(auth)
+// @response    success, items[], cnt
+
+exports.getMyReservations = async (req, res, next) => {
+  let user_id = req.user.id;
+
+  if (!user_id) {
+    res.status(400).json();
+    return;
+  }
+
+  // 지금 현재 시간보다, 상영시간이 지난 시간의 예약은,
+  // 가져 올 필요가 없습니다.
+
+  // 현재 시간을, 밀리세컨즈 1970년1월1일 이후의 시간 => 숫자 1596164845211
+  let currentTime = Date.now();
+  // 위의 현재시간 숫자를 => 2020-07-31 12:07:25 식으로 바꿔준것.
+  let compareTime = moment(currentTime).format("YYYY-MM-DD HH:mm:ss");
+  console.log(currentTime);
+  console.log(compareTime);
+  // 영화시작시간이 현재 시간보다 이후의 시간으로 예약된 정보만 가져오는 쿼리.
+  // 현재 2020-07-31 12:15  <  2020-07-31 14:00
+  let query =
+    "select r.* , m.title \
+    from movie_reservation as r \
+    join movie as m \
+    on r.movie_id = m.id \
+    where user_id = ? and start_time > ? ";
+
+  let data = [user_id, compareTime];
+
+  try {
+    [rows] = await connection.query(query, data);
+    res.status(200).json({ success: true, items: rows, cnt: rows.length });
+  } catch (e) {
+    res.status(500).json();
+  }
+};
+
+// @desc        좌석 예약을 취소
+// @route       DELETE /api/v1/reservations/:reservation_id
+// @request     reservation_id, user_id(auth)
+// @response    success
+
+exports.deleteReservation = async (req, res, next) => {
+  let reservation_id = req.params.reservation_id;
+  let user_id = req.user.id;
+
+  // 시작시간 30분 전에는 취소 불가.
+  let currentTime = Date.now(); // 밀리세컨즈 1596166702591
+  let compareTime = currentTime + 1000 * 60 * 30; // 현재시간 + 30분
+
+  let query = "select * from movie_reservation where id = ? ";
+  let data = [reservation_id];
+
+  try {
+    [rows] = await connection.query(query, data);
+    // DB에 저장된 timestamp 형식을 => 밀리세컨즈로 바꾸는 방법
+    let start_time = rows[0].start_time;
+    let mili_start_time = new Date(start_time).getTime();
+    if (mili_start_time < compareTime) {
+      res
+        .status(400)
+        .json({ message: "영화상영 30분 이전에는 취소가 안됩니다." });
+      return;
+    }
+  } catch (e) {
+    res.status(500).json();
+  }
+
+  query = "delete from movie_reservation where id = ? ";
+  data = [reservation_id];
+
+  try {
+    [result] = await connection.query(query, data);
+    res.status(200).json({ success: true });
+  } catch (e) {
+    res.status(500).json();
   }
 };

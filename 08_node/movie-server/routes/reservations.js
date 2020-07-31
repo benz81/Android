@@ -3,6 +3,8 @@ const auth = require("../middleware/auth");
 const {
   setReservation,
   getReservations,
+  getMyReservations,
+  deleteReservation,
 } = require("../controllers/reservations");
 
 const router = express.Router();
@@ -11,5 +13,7 @@ const router = express.Router();
 
 router.route("/").post(auth, setReservation);
 router.route("/").get(auth, getReservations);
+router.route("/me").get(auth, getMyReservations);
+router.route("/:reservation_id").delete(auth, deleteReservation);
 
 module.exports = router;
