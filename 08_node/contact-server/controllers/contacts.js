@@ -1,13 +1,21 @@
 const connection = require("../db/mysql_connection");
 
+// 모든 주소록 데이터를 다 가져와서, 클라이언트한테 보내는것은
+// 문제가 있습니다. 데이터를 모두 다 보내지 않고, 끊어서 보내야 함.
+// 현업에서는 20~30개 사이로 끊어서 보냅니다.
+
 // @desc    모든 주소록 가져오기
-// @route   GET /api/v1/contacts
+// @route   GET /api/v1/contacts?offset=0&limit=20
 exports.getAllContacts = async function (req, res, next) {
-  let query = "select * from contact";
+  let offset = req.query.offset;
+  let limit = req.query.limit;
+
+  let query = `select * from contact limit ${offset}, ${limit} `;
 
   try {
     [rows, fields] = await connection.query(query);
-    res.status(200).json({ success: true, items: rows });
+    let count = rows.length;
+    res.status(200).json({ success: true, items: rows, count: count });
   } catch (e) {
     res.status(500).json({ success: false, message: "DB ERROR", error: e });
   }
