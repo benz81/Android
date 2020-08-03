@@ -157,3 +157,7 @@
 79. Node 실습 11 좌석예약 : https://docs.google.com/presentation/d/1Uy8coJvFXaMJcTYS_4QF-j1fAj9mmgzJB1fBq74hYxw/edit?usp=sharing
 
 80. Node 실습 12 연락처 공유 : https://docs.google.com/presentation/d/1qQS4o3PWHZZDEI529rTfE2VABM6rtmBKclA90cpEzBI/edit?usp=sharing
+
+91. 포트폴리오 주제 목록 (발표 2번 예정 : 화면 기획 발표, 최종 시연 발표) : https://docs.google.com/presentation/d/1Vyr5xYQMa4K7Z9svkMrOl5nrWTvcS8Wbgyq2nwWZlQ8/edit?usp=sharing
+
+92. AWS에 Nodejs CI / CD : https://docs.google.com/presentation/d/1--jy4ReubkhEAYJhnJQ5OSNYkTob2nKBzNYPBISfTk8/edit?usp=sharing
