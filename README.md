@@ -161,3 +161,5 @@
 91. 포트폴리오 주제 목록 (발표 2번 예정 : 화면 기획 발표, 최종 시연 발표) : https://docs.google.com/presentation/d/1Vyr5xYQMa4K7Z9svkMrOl5nrWTvcS8Wbgyq2nwWZlQ8/edit?usp=sharing
 
 92. AWS에 Nodejs CI / CD : https://docs.google.com/presentation/d/1--jy4ReubkhEAYJhnJQ5OSNYkTob2nKBzNYPBISfTk8/edit?usp=sharing
+
+93. Node 실습 13 사진 포스팅 : https://docs.google.com/presentation/d/1__sEj6okgwS8UZBmgeC84si16MhAhDoGQhlLW8qkh3Q/edit?usp=sharing
