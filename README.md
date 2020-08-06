@@ -163,3 +163,7 @@
 92. AWS에 Nodejs CI / CD : https://docs.google.com/presentation/d/1--jy4ReubkhEAYJhnJQ5OSNYkTob2nKBzNYPBISfTk8/edit?usp=sharing
 
 93. Node 실습 13 사진 포스팅 : https://docs.google.com/presentation/d/1__sEj6okgwS8UZBmgeC84si16MhAhDoGQhlLW8qkh3Q/edit?usp=sharing
+
+94. 클라우드 자격증 관련 : http://www.itworld.co.kr/news/159724
+
+95. AWS DEV ASSOCIATE 시험준비 : https://gist.github.com/serithemage/df61aaf396046eff7244b6eaa8d58d4a
