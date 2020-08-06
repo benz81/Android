@@ -153,6 +153,7 @@ exports.deletePost = async (req, res, next) => {
   let query = "select * from photo_post where id = ? ";
   let data = [post_id];
 
+  let photo_url;
   try {
     [rows] = await connection.query(query, data);
     // 다른사람 포스팅이면, 401로 보낸다.
@@ -160,9 +161,22 @@ exports.deletePost = async (req, res, next) => {
       req.status(401).json();
       return;
     }
+    photo_url = rows[0].photo_url;
   } catch (e) {
     res.status(500).json();
     return;
   }
-  // 끝.
+  // 이 사람의 포스팅이 맞는지 확인하는 코드 // 끝.
+
+  query = "delete from photo_post where id = ? ";
+  data = [post_id];
+
+  try {
+    [result] = await connection.query(query, data);
+    res.status(200).json({ success: true });
+    return;
+  } catch (e) {
+    res.status(500).json();
+    return;
+  }
 };

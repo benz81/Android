@@ -7,6 +7,7 @@ const path = require("path");
 // 내가 만든 파일 require는 이 아래에다가 넣자.
 const users = require("./routes/users");
 const posts = require("./routes/posts");
+const follows = require("./routes/follows");
 
 const app = express();
 app.use(express.json());
@@ -15,6 +16,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/api/v1/users", users);
 app.use("/api/v1/posts", posts);
+app.use("/api/v1/follows", follows);
 
 const PORT = process.env.PORT || 5777;
 app.listen(PORT, console.log("서버 가동"));
