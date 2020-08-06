@@ -1,6 +1,7 @@
 const path = require("path");
 const connection = require("../db/mysql_connection");
 const { post } = require("../routes/posts");
+const { off } = require("../db/mysql_connection");
 // ㅁ
 // @desc        사진1장과 내용을 업로드 하는 API
 // @route       POST /api/v1/posts
@@ -174,6 +175,42 @@ exports.deletePost = async (req, res, next) => {
   try {
     [result] = await connection.query(query, data);
     res.status(200).json({ success: true });
+    return;
+  } catch (e) {
+    res.status(500).json();
+    return;
+  }
+};
+
+// @desc    내 친구들의 포스팅 불러오기 (25개씩)
+// @route   GET /api/v1/posts?offset=0&limit=25
+// @request user_id(auth)
+// @response  success, items[], cnt
+
+exports.getFriendsPost = async (req, res, next) => {
+  let user_id = req.user.id;
+  let offset = req.query.offset;
+  let limit = req.query.limit;
+
+  if (!user_id || !offset || !limit) {
+    res.status(400).json();
+    return;
+  }
+
+  let query =
+    "select p.* \
+  from photo_follow as f \
+  join photo_post as p \
+  on f.friend_user_id = p.user_id \
+  where f.user_id = ? \
+  order by p.created_at desc \
+  limit ?, ? ";
+
+  let data = [user_id, Number(offset), Number(limit)];
+
+  try {
+    [rows] = await connection.query(query, data);
+    res.status(200).json({ success: true, items: rows, cnt: rows.length });
     return;
   } catch (e) {
     res.status(500).json();
