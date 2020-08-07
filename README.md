@@ -169,3 +169,5 @@
 95. AWS DEV ASSOCIATE 시험준비 : https://gist.github.com/serithemage/df61aaf396046eff7244b6eaa8d58d4a
 
 96. 앱 배포하기 : https://docs.google.com/presentation/d/1h1PdbAlh_sUf4I9NCBiBOGqfatOwwoIDrNh8xB7V1qY/edit?usp=sharing
+
+97. 통합 구현 실습 1 : https://docs.google.com/presentation/d/1iZ4rGjvpS6Mwc8NY_zspGzdUoaHgEd7EFhVVGhWTJZE/edit?usp=sharing
