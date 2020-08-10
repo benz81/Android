@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -43,6 +44,12 @@ public class MainActivity extends AppCompatActivity {
     // 페이징 처리를 위한 변수
     int offset = 0;
     int limit = 25;
+    int cnt;
+
+    // 정렬을 위한 변수
+    String order;
+
+    String path = "/api/v1/movies";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,22 +76,36 @@ public class MainActivity extends AppCompatActivity {
                 int totalCount = recyclerView.getAdapter().getItemCount();
 
                 if( (lastPosition + 1) == totalCount){
-                    // 네트워크 통해서, 데이터를 더 불러오면 된다.
-                    addNetworkData();
+                    if(cnt == limit) {
+                        // 네트워크 통해서, 데이터를 더 불러오면 된다.
+                        addNetworkData(path);
+                    }
                 }
             }
         });
 
         requestQueue = Volley.newRequestQueue(MainActivity.this);
 
-        getNetworkData();
+        getNetworkData(path);
+
+        btn_year.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 데이터를 담고 있는, 어레이리스트를 비워준다.
+                movieArrayList.clear();
+                offset = 0;
+                order = "desc";
+                path = "/api/v1/movies/year";
+                getNetworkData(path);
+            }
+        });
 
     }
 
-    private void getNetworkData() {
+    private void getNetworkData(String path) {
         JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.GET,
-                Util.BASE_URL + "/api/v1/movies?offset="+offset+"&limit="+limit,
+                Util.BASE_URL +  path + "?offset="+offset+"&limit="+limit+"&order="+order,
                 null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -104,7 +125,13 @@ public class MainActivity extends AppCompatActivity {
                                 String genre = items.getJSONObject(i).getString("genre");
                                 int attendance = items.getJSONObject(i).getInt("attendance");
                                 String year = items.getJSONObject(i).getString("year");
-                                int reply_cnt = items.getJSONObject(i).getInt("reply_cnt");
+
+                                int reply_cnt;
+                                if(items.getJSONObject(i).isNull("reply_cnt")){
+                                    reply_cnt = 0;
+                                }else{
+                                    reply_cnt = items.getJSONObject(i).getInt("reply_cnt");
+                                }
 
                                 Double avg_rating;
                                 if(items.getJSONObject(i).isNull("avg_rating")){
@@ -123,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
                             // 페이징을 위해서, 오프셋을 증가 시킨다. 그래야 리스트 끝에가서 네트워크 다시
                             // 호출할때, 해당 offset 으로 서버에 요청이 가능하다.
                             offset = offset + response.getInt("cnt");
+                            cnt = response.getInt("cnt");
 
 
                         } catch (JSONException e) {
@@ -142,10 +170,10 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(request);
     }
 
-    private void addNetworkData() {
+    private void addNetworkData(String path) {
         JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.GET,
-                Util.BASE_URL + "/api/v1/movies?offset=" + offset + "&limit=" + limit,
+                Util.BASE_URL +  path + "?offset="+offset+"&limit="+limit+"&order="+order,
                 null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -163,7 +191,13 @@ public class MainActivity extends AppCompatActivity {
                                 String genre = items.getJSONObject(i).getString("genre");
                                 int attendance = items.getJSONObject(i).getInt("attendance");
                                 String year = items.getJSONObject(i).getString("year");
-                                int reply_cnt = items.getJSONObject(i).getInt("reply_cnt");
+
+                                int reply_cnt;
+                                if(items.getJSONObject(i).isNull("reply_cnt")){
+                                    reply_cnt = 0;
+                                }else{
+                                    reply_cnt = items.getJSONObject(i).getInt("reply_cnt");
+                                }
 
                                 Double avg_rating;
                                 if(items.getJSONObject(i).isNull("avg_rating")){
@@ -180,6 +214,7 @@ public class MainActivity extends AppCompatActivity {
 
                             // 페이징을 위해서 오프셋을 변경시켜놔야 한다.
                             offset = offset + response.getInt("cnt");
+                            cnt = response.getInt("cnt");
 
                         } catch (JSONException e) {
                             e.printStackTrace();
