@@ -171,3 +171,5 @@
 96. 앱 배포하기 : https://docs.google.com/presentation/d/1h1PdbAlh_sUf4I9NCBiBOGqfatOwwoIDrNh8xB7V1qY/edit?usp=sharing
 
 97. 통합 구현 실습 1 : https://docs.google.com/presentation/d/1iZ4rGjvpS6Mwc8NY_zspGzdUoaHgEd7EFhVVGhWTJZE/edit?usp=sharing
+
+98. 안드로이드 사진찍기 / 갤러리 이미지 가져오기 : https://docs.google.com/presentation/d/1P0Ct0zCkQma2rxCZ--iVn9uQI1Db1ZVk4_vTHct-D5s/edit?usp=sharing
