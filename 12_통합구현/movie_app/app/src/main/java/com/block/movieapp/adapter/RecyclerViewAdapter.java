@@ -1,6 +1,8 @@
 package com.block.movieapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +13,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.block.movieapp.Login;
+import com.block.movieapp.MainActivity;
 import com.block.movieapp.R;
 import com.block.movieapp.model.Movie;
+import com.block.movieapp.util.Util;
 
 import org.w3c.dom.Text;
 
@@ -58,6 +63,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
+        if(movie.getIs_favorite() == 1){
+            holder.btn_star.setImageResource(android.R.drawable.btn_star_big_on);
+        }else{
+            holder.btn_star.setImageResource(android.R.drawable.btn_star_big_off);
+        }
     }
 
     @Override
@@ -78,6 +89,37 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             txt_genre = itemView.findViewById(R.id.txt_genre);
             txt_year = itemView.findViewById(R.id.txt_year);
             btn_star = itemView.findViewById(R.id.btn_star);
+
+            btn_star.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    Log.i("AAA", position+"");
+                    // 로그인 상태인지 확인한다.
+                    SharedPreferences sp = context.getSharedPreferences(Util.PREFERENCE_NAME,
+                            Context.MODE_PRIVATE);
+                    String token = sp.getString("token", null);
+                    Log.i("AAA", "token : " + token);
+                    if(token == null){
+                        // 로그인 액티비티를 띄운다.
+                        Intent i = new Intent(context, Login.class);
+                        context.startActivity(i);
+                    }else{
+                        // 정상적으로 별표 표시를 서버로 보냅니다.
+                        // 즐겨찾기 추가하는 API를 호출할건데,
+                        // 호출하는 코드는 메인 액티비티에 메소드로 만들고,
+                        // 여기에서는 position 값만 넘겨주도록 한다.
+
+                        int is_favorite = movieArrayList.get(position).getIs_favorite();
+                        if(is_favorite == 1){
+                            // 별표 색이 이미 있으면, 즐겨찾기 삭제 함수 호출!
+                        }else{
+                            // 별표 색깔이 없으면, 즐겨찾기 추가 함수 호출!
+                            ((MainActivity)context).addFavorite(position);
+                        }
+                    }
+                }
+            });
         }
     }
 

@@ -8,8 +8,9 @@ public class Movie {
     private String year;
     private int reply_cnt;
     private Double avg_rating;
+    private int is_favorite;
 
-    public Movie(int id, String title, String genre, int attendance, String year, int reply_cnt, Double avg_rating) {
+    public Movie(int id, String title, String genre, int attendance, String year, int reply_cnt, Double avg_rating, int is_favorite) {
         this.id = id;
         this.title = title;
         this.genre = genre;
@@ -17,6 +18,7 @@ public class Movie {
         this.year = year;
         this.reply_cnt = reply_cnt;
         this.avg_rating = avg_rating;
+        this.is_favorite = is_favorite;
     }
     public Movie(){
 
@@ -76,5 +78,13 @@ public class Movie {
 
     public void setAvg_rating(Double avg_rating) {
         this.avg_rating = avg_rating;
+    }
+
+    public int getIs_favorite() {
+        return is_favorite;
+    }
+
+    public void setIs_favorite(int is_favorite) {
+        this.is_favorite = is_favorite;
     }
 }

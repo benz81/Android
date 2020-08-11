@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -27,6 +29,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
     String order;
 
     String path = "/api/v1/movies";
+
+    String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +92,15 @@ public class MainActivity extends AppCompatActivity {
 
         requestQueue = Volley.newRequestQueue(MainActivity.this);
 
+        SharedPreferences sp = getSharedPreferences(Util.PREFERENCE_NAME, MODE_PRIVATE);
+        token = sp.getString("token", null);
+
+        if(token != null){
+            path = "/api/v1/movies/auth";
+        }else{
+            path = "/api/v1/movies";
+        }
+
         getNetworkData(path);
 
         btn_year.setOnClickListener(new View.OnClickListener() {
@@ -103,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getNetworkData(String path) {
+        Log.i("AAA", Util.BASE_URL +  path + "?offset="+offset+"&limit="+limit+"&order="+order);
         JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.GET,
                 Util.BASE_URL +  path + "?offset="+offset+"&limit="+limit+"&order="+order,
@@ -126,6 +142,12 @@ public class MainActivity extends AppCompatActivity {
                                 int attendance = items.getJSONObject(i).getInt("attendance");
                                 String year = items.getJSONObject(i).getString("year");
 
+                                int is_favorite;
+                                if (items.getJSONObject(i).isNull("is_favorite")){
+                                    is_favorite = 0;
+                                }else{
+                                    is_favorite = items.getJSONObject(i).getInt("is_favorite");
+                                }
                                 int reply_cnt;
                                 if(items.getJSONObject(i).isNull("reply_cnt")){
                                     reply_cnt = 0;
@@ -140,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
                                     avg_rating = items.getJSONObject(i).getDouble("avg_rating");
                                 }
 
-                                Movie movie = new Movie(id, title, genre, attendance,year,reply_cnt,avg_rating);
+                                Movie movie = new Movie(id, title, genre, attendance,year,reply_cnt,avg_rating, is_favorite);
                                 movieArrayList.add(movie);
                             }
 
@@ -165,7 +187,14 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 }
-        );
+        ){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("Authorization", "Bearer "+token);
+                return params;
+            }
+        };
 
         requestQueue.add(request);
     }
@@ -178,6 +207,7 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        Log.i("AAA", response.toString());
                         try {
                             boolean success = response.getBoolean("success");
                             if(success == false){
@@ -191,6 +221,13 @@ public class MainActivity extends AppCompatActivity {
                                 String genre = items.getJSONObject(i).getString("genre");
                                 int attendance = items.getJSONObject(i).getInt("attendance");
                                 String year = items.getJSONObject(i).getString("year");
+
+                                int is_favorite;
+                                if (items.getJSONObject(i).isNull("is_favorite")){
+                                    is_favorite = 0;
+                                }else{
+                                    is_favorite = items.getJSONObject(i).getInt("is_favorite");
+                                }
 
                                 int reply_cnt;
                                 if(items.getJSONObject(i).isNull("reply_cnt")){
@@ -206,7 +243,7 @@ public class MainActivity extends AppCompatActivity {
                                     avg_rating = items.getJSONObject(i).getDouble("avg_rating");
                                 }
 
-                                Movie movie = new Movie(id, title, genre, attendance,year,reply_cnt,avg_rating);
+                                Movie movie = new Movie(id, title, genre, attendance,year,reply_cnt,avg_rating, is_favorite);
                                 movieArrayList.add(movie);
                             }
 
@@ -227,8 +264,64 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 }
-        );
+        ){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("Authorization", "Bearer "+token);
+                return params;
+            }
+        };
         requestQueue.add(request);
+    }
+
+    public void addFavorite(final int position){
+
+        // position 을 통해서, 즐겨찾기 추가할 movie_id 값을 가져올 수 있습니다.
+
+        Movie movie = movieArrayList.get(position);
+        int movie_id = movie.getId();
+
+        JSONObject body = new JSONObject();
+        try {
+            body.put("movie_id", movie_id);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.POST,
+                Util.BASE_URL + "/api/v1/favorites",
+                body,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.i("AAA", "add favorite : " + response.toString());
+                        // 어레이리스트의 값을 변경시켜줘야 한다.
+                        Movie movie = movieArrayList.get(position);
+                        movie.setIs_favorite(1);
+                        adapter.notifyDataSetChanged();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        )  {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+
+                SharedPreferences sp = getSharedPreferences(Util.PREFERENCE_NAME, MODE_PRIVATE);
+                String token = sp.getString("token", null);
+
+                Map<String, String> params = new HashMap<>();
+                params.put("Authorization", "Bearer " + token);
+                return params;
+            }
+        } ;
+        Volley.newRequestQueue(MainActivity.this).add(request);
     }
 }
 
