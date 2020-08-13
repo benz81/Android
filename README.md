@@ -173,3 +173,5 @@
 97. 통합 구현 실습 1 : https://docs.google.com/presentation/d/1iZ4rGjvpS6Mwc8NY_zspGzdUoaHgEd7EFhVVGhWTJZE/edit?usp=sharing
 
 98. 안드로이드 사진찍기 / 갤러리 이미지 가져오기 : https://docs.google.com/presentation/d/1P0Ct0zCkQma2rxCZ--iVn9uQI1Db1ZVk4_vTHct-D5s/edit?usp=sharing
+
+99. 엘라스틱 빈스톡, 파일 업로드 용량 늘리기 : https://docs.google.com/presentation/d/1s_-qsoQXTsOM8q4c61WhNiMZtleu3bBvgRyQCbCv9o4/edit?usp=sharing
