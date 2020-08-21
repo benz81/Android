@@ -1,6 +1,6 @@
 # Android Edu
 
-- 자리 변경 : https://docs.google.com/spreadsheets/d/18jYAP2j66a58p3TNNApSI8rMb4RGFPv51jdTwCRqOEE/edit?usp=sharing
+- 자리 변경  : https://docs.google.com/spreadsheets/d/18jYAP2j66a58p3TNNApSI8rMb4RGFPv51jdTwCRqOEE/edit?usp=sharing
 
 - 실습 파일 폴더 경로 : https://drive.google.com/drive/folders/1RLg95RUc9hOHtaQCzTiqb8YwLfQRPhuN?usp=sharing
 
