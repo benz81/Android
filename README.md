@@ -182,3 +182,6 @@
 100. 위치기반 쿼리하기 : https://docs.google.com/presentation/d/1AnqfFf8WCsJiBto8WvGOdwtZLjKK_r3zVmdt4QW-AC0/edit?usp=sharing
 
 101. FCM 안드로이드 푸시 : https://docs.google.com/presentation/d/1YjhTQoGu6OqjdHdwhpNMIDR6xr1rMDJiPfjDkbMJIgk/edit?usp=sharing
+
+102. AWS Serverless 개발 : https://docs.google.com/presentation/d/1KJiNtYTdFPaExTHdfS1PF64-vQNrff7hTf01-OoQqNc/edit?usp=sharing
+
