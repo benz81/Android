@@ -13,8 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.block.youtube.R;
+import com.block.youtube.Player;
 import com.block.youtube.model.Video;
+
+import com.block.youtube.R;
+
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
@@ -76,7 +79,13 @@ public class RecyclerViewAdapter extends  RecyclerView.Adapter<RecyclerViewAdapt
                     String videoId = video.getVideoId();
                     // 유투브 영상을 웹페이지에서 시청 가능하도록 하는 url 주소
                     String url = "https://www.youtube.com/watch?v=" + videoId;
-                    openWebPage(url);
+
+                    Intent i = new Intent(context, Player.class);
+                    i.putExtra("videoId", videoId);
+                    context.startActivity(i);
+
+
+//                    openWebPage(url);
                 }
             });
 

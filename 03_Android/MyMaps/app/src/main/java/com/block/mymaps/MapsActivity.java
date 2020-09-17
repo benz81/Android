@@ -47,7 +47,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // 여러개의 마커를 처리하는 방법
         // 1. 마커 옵션을 만든다.
         MarkerOptions options1 =
-                new MarkerOptions().position(new LatLng(37.541597, 126.838139))
+                new MarkerOptions().position(new LatLng(37.541449, 126.838116))
                         .title("더조은 강서");
         // 2. ArrayList 에 넣어준다.
         list.add(options1);

@@ -27,8 +27,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+// 일반 검색
+//    String youtubeUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyBbbw95I-YTfS09K3rNpff6rSGMFETyOhQ&maxResults=2&order=date&type=video&type=video&regionCode=KR";
+// 채널 아이디로 검색
+//    String youtubeUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyDsk1BctEKj89sQU47LI_juOrR7VzLN6uw&order=date&channelId=UCcNgS7r4l9KCVU80qg6RbOw&&maxResults=10&type=video";
 
-    String youtubeUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&key=[자신의 키]&maxResults=7&order=date&type=video&type=video&regionCode=KR";
+    String youtubeUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyDsk1BctEKj89sQU47LI_juOrR7VzLN6uw&order=date&maxResults=10&type=video&q=드라이버";
     RequestQueue requestQueue;
 
     RecyclerView recyclerView;
