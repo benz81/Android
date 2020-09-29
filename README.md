@@ -192,3 +192,5 @@
 104. 안드로이드에서 쓰레드의 활용 : https://docs.google.com/presentation/d/1rDCsd68yprqqNDbo_LcRwHMdaoci-SRcDCvb_UWNYGM/edit?usp=sharing
 
 105. REST API / 자바의 자료구조 : https://docs.google.com/presentation/d/1zvKfMiPE9PCr-zvbrL12IYSa_31RQ2ZRKoJS33CeY4Q/edit?usp=sharing
+
+106. 서버 구성 : https://docs.google.com/presentation/d/1Yy_RGIyk0zcrXiHJD6pQJfoHnacVOQ-KH0ZY6tJLNng/edit?usp=sharing
