@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.block.memo.MainActivity;
 import com.block.memo.R;
 import com.block.memo.UpdateMemo;
 import com.block.memo.data.DatabaseHandler;
@@ -98,19 +99,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     deleteAlert.setPositiveButton("Yes.", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            // 데이터베이스에서 삭제.
+
                             int index = getAdapterPosition();
-                            Memo memo = memoList.get(index);
-                            DatabaseHandler dh = new DatabaseHandler(context);
-                            dh.deleteMemo(memo);
-                            // 데이터셋이 바꼈다는것을 알려주는 메소드 실행.
-                            // 1번째 방법
-                            memoList = dh.getAllMemo();
-                            notifyDataSetChanged();
 
-                            // 2번째 방법
-                            //((MainActivity)context).refresh();
-
+                            ((MainActivity)context).deleteMemo(index);
                         }
                     });
                     deleteAlert.setNegativeButton("No.", null);

@@ -104,6 +104,19 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewAdapter = new RecyclerViewAdapter(MainActivity.this, memoArrayList);
         recyclerView.setAdapter(recyclerViewAdapter);
     }
+
+    public void deleteMemo(int index){
+        Memo memo = memoArrayList.get(index);
+        int memoId = memo.getId();
+
+
+        // 발리로 위의 메모아이디 전송.
+
+        // 완료 되면, memoArrayList.remove(index);
+        //           adapt 노티파이.
+
+
+    }
 }
 
 
