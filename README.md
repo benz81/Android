@@ -196,3 +196,5 @@
 106. 서버 구성 : https://docs.google.com/presentation/d/1Yy_RGIyk0zcrXiHJD6pQJfoHnacVOQ-KH0ZY6tJLNng/edit?usp=sharing
 
 107. RDBMS vs NoSQL : https://docs.google.com/presentation/d/11UyOjM7XCI7DEOysmwyQD2VX-7uCRjg3DynUDlAhSwk/edit?usp=sharing
+
+108. 면접대비 git : https://docs.google.com/presentation/d/1u-Sj4st6Kco0_6AVvWqwqNVoR8bRcOP3luHGKhwXgKA/edit?usp=sharing
