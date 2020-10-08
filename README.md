@@ -199,4 +199,4 @@
 
 108. 취업용 git : https://docs.google.com/presentation/d/1u-Sj4st6Kco0_6AVvWqwqNVoR8bRcOP3luHGKhwXgKA/edit?usp=sharing
 
-109. https://docs.google.com/presentation/d/19eMuUz_8dB8-8IMchyUlRRpe0VrPbbHhR8UgY0sw-Wc/edit?usp=sharing
+109. Nodejs AWS SDK : https://docs.google.com/presentation/d/19eMuUz_8dB8-8IMchyUlRRpe0VrPbbHhR8UgY0sw-Wc/edit?usp=sharing
