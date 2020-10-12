@@ -2,14 +2,6 @@
 
 - 웹페이지 띄우는 인텐트 : https://github.com/blockenters/Android/blob/master/03_Android/Intent/app/src/main/java/com/block/intent/MainActivity.java
 
-- 자리 변경  : https://docs.google.com/spreadsheets/d/18jYAP2j66a58p3TNNApSI8rMb4RGFPv51jdTwCRqOEE/edit?usp=sharing
-
-- 실습 파일 폴더 경로 : https://drive.google.com/drive/folders/1RLg95RUc9hOHtaQCzTiqb8YwLfQRPhuN?usp=sharing
-
-
-- 문제해결 시나리오 제출(이미지,소스코드) : https://drive.google.com/drive/folders/1crBbMk-x4VMUp46Sw2SIBk5yTfzMo-nE?usp=sharing
-
-
 
 
 ### 강의 자료
@@ -204,3 +196,5 @@
 110. retrofit2 : https://docs.google.com/presentation/d/1rHKZOjRzlY0CzAlwQjuMzmPzK5ISG3ia82Xb8vqpkKs/edit?usp=sharing
 
 111. 서버부분 면접질문 자바스크립트 scope : https://docs.google.com/presentation/d/1cPaGczRBZEmJznvE0KejqWhyIPnxq0L49fPli0hJr_0/edit?usp=sharing
+
+112. 이력서 작성 준비 : https://docs.google.com/presentation/d/1DyfIgoEayJki15_qUy696n-QIfWVJ6UoU-J4ErJX4js/edit?usp=sharing
