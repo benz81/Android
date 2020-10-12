@@ -202,3 +202,5 @@
 109. Nodejs AWS SDK : https://docs.google.com/presentation/d/19eMuUz_8dB8-8IMchyUlRRpe0VrPbbHhR8UgY0sw-Wc/edit?usp=sharing
 
 110. retrofit2 : https://docs.google.com/presentation/d/1rHKZOjRzlY0CzAlwQjuMzmPzK5ISG3ia82Xb8vqpkKs/edit?usp=sharing
+
+111. 서버부분 면접질문 자바스크립트 scope : https://docs.google.com/presentation/d/1cPaGczRBZEmJznvE0KejqWhyIPnxq0L49fPli0hJr_0/edit?usp=sharing
