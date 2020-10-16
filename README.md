@@ -202,3 +202,5 @@
 113. 콜백함수 : https://docs.google.com/presentation/d/14k3KMM-MTd9NCGhgJRpOZg3141-Uew1Irp30onMBsqE/edit?usp=sharing
 
 114. 콜백 동기/비동기: https://docs.google.com/presentation/d/117N4j2x0wb7pBfrtCoj-LyXqlzD9WNRt_c-Jke1-Ztc/edit?usp=sharing
+
+115. 안드로이드 ANR : https://docs.google.com/presentation/d/1if2UijpdaccpubeSroCDxTeuMjENiD0JISBaiR9f9zo/edit?usp=sharing
