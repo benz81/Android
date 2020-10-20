@@ -206,3 +206,5 @@
 115. 안드로이드 ANR : https://docs.google.com/presentation/d/1if2UijpdaccpubeSroCDxTeuMjENiD0JISBaiR9f9zo/edit?usp=sharing
 
 116. Callback Hell : https://docs.google.com/presentation/d/1t6UZdNyh-8JyeUdd1zfwTudg3G02kqn-fWPx-SF9dQM/edit?usp=sharing
+
+17. 자바 면접 필수 질문 : https://docs.google.com/presentation/d/1sObWB4foUMgw1E152jo2XxUF5Arfp7CYei21bhZNCtQ/edit?usp=sharing
